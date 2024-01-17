@@ -1,7 +1,9 @@
-import { Inter } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({ subsets: ['latin'], weight: ["400", "500", "600", "700"] })
 
 export const metadata = {
   title: 'MeetWave - Online Meeting Conference',
@@ -11,7 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${poppins.className} bg-[#0D141E] text-white flex flex-col [&>*:nth-child(2)]:flex-1 min-h-screen`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }

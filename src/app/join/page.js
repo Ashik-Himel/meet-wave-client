@@ -1,9 +1,9 @@
-export default function Home() {
+export default function Page() {
   return (
     <main>
       <div className="container">
-        <span>Homepage</span>
+        <span>Join Meeting Page</span>
       </div>
     </main>
-  )
-}
+  );
+};
