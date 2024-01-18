@@ -35,16 +35,16 @@ export default function Header() {
             <span className="text-2xl font-medium">Meet<span className="text-primary">Wave.</span></span>
           </Link>
 
-          <ul className="font-medium flex flex-col lg:flex-row justify-center items-center gap-6 fixed lg:static top-0 bottom-0 w-4/5 max-w-[300px] lg:w-auto lg:max-w-none bg-secondary lg:bg-transparent text-xl lg:text-base transition-[right] duration-300 lg:transition-none" style={drawerShow ? {right: '0'} : {right: '-350px'}} ref={drawerRef}>
+          <ul className="font-medium flex flex-col lg:flex-row justify-center items-center gap-6 fixed lg:static top-0 bottom-0 w-4/5 max-w-[300px] lg:w-auto lg:max-w-none bg-secondary lg:bg-transparent text-xl lg:text-base transition-[right] duration-300 lg:transition-none z-50" style={drawerShow ? {right: '0'} : {right: '-350px'}} ref={drawerRef}>
             <FaXmark className="text-3xl text-primary absolute top-6 left-6 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(false)} />
             <li>
               <Link href='/' onClick={() => setDrawerShow(false)}>Home</Link>
             </li>
             <li>
-              <Link href='/create' onClick={() => setDrawerShow(false)}>Create Meeting</Link>
+              <Link href='/create-meeting' onClick={() => setDrawerShow(false)}>Create a Meeting</Link>
             </li>
             <li>
-              <Link href='/join' onClick={() => setDrawerShow(false)}>Join Now</Link>
+              <Link href='/join-meeting' onClick={() => setDrawerShow(false)}>Join Meeting</Link>
             </li>
 
             <div className="flex justify-center items-center gap-4 lg:hidden">

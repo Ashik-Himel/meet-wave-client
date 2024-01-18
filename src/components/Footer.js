@@ -5,7 +5,7 @@ import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="pt-8 pb-6">
+    <footer className="pt-12 pb-6">
       <div className="container">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="space-y-4">
@@ -19,10 +19,10 @@ export default function Footer() {
                 <Link href='/'>Home</Link>
               </li>
               <li>
-                <Link href='/create'>Create Meeting</Link>
+                <Link href='/create-meeting'>Create a Meeting</Link>
               </li>
               <li>
-                <Link href='/join'>Join Now</Link>
+                <Link href='/join-meeting'>Join Meeting</Link>
               </li>
             </ul>
           </div>

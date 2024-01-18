@@ -1,9 +1,11 @@
+import Banner from "@/components/home/Banner";
+import TrustCard from "@/components/home/TrustCard";
+
 export default function Home() {
   return (
     <main>
-      <div className="container">
-        <span>Homepage</span>
-      </div>
+      <Banner />
+      <TrustCard />
     </main>
   )
 }
