@@ -10,7 +10,7 @@ export default function TrustCard() {
       <div className="container">
         <div className='flex flex-col sm:flex-row justify-between sm:items-center gap-6'>
           <span className='block w-full max-w-[300px] text-2xl font-semibold'>Trusted by 100+ companies in the world!</span>
-          <div className='grid grid-cols-[auto_auto] lg:grid-cols-[auto_auto_auto_auto] gap-8'>
+          <div className='grid grid-cols-[auto_auto] lg:grid-cols-[auto_auto_auto_auto] gap-y-6 gap-x-6 md:gap-x-10 lg:gap-x-16'>
             <div>
               <Image src={facebookLogo} alt='Facebook Logo' className='w-[100px]' />
             </div>
