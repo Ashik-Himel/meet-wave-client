@@ -15,7 +15,11 @@ module.exports = {
         '2xl': '6rem'
       }
     },
-    extend: {},
+    extend: {
+      colors: {
+        bgColor: '#0D141E'
+      }
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {
