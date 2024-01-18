@@ -8,7 +8,7 @@ export default function FilterSection() {
       <div className="container">
         <div className="flex flex-col md:flex-row gap-x-8 gap-y-4 justify-between md:items-center">
           <div className="w-full max-w-[415px]">
-            <h2 className="text-3xl font-semibold mb-4">More expressive with cute and fun filters</h2>
+            <h2 className="text-3xl font-semibold mb-4 !leading-[1.4]">More expressive with cute and fun filters</h2>
             <p className="mb-6">Use filters when collaborating with your team, make the atmosphere less tense and colder.</p>
             <Link href='/create-meeting' className="btn btn-primary [box-shadow:0px_0px_30px_rgba(33,128,232,0.25)]">Explore Filter</Link>
           </div>
