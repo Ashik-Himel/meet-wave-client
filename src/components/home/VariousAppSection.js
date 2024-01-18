@@ -8,7 +8,7 @@ export default function VariousAppSection() {
     <section className='mt-16'>
       <div className="container">
         <div className='w-full max-w-[650px] mx-auto text-center'>
-          <h2 className="text-3xl font-semibold mb-4">Download for free in various app stores</h2>
+          <h2 className="text-3xl font-semibold mb-4 !leading-[1.4]">Download for free in various app stores</h2>
           <p className='mb-6'>We are providing our application in various types of platform. Download our application, install it and get started easily.</p>
 
           <div className='flex justify-center items-center gap-6'>
