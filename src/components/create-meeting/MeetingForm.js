@@ -14,7 +14,7 @@ export default function MeetingForm() {
       setShowDateTime(false);
     }
   }
-
+ 
   return (
     <form className="bg-secondary p-6 rounded-lg w-full max-w-[500px]" onSubmit={onHandleSubmit}>
       <label htmlFor="meeting-type" className="font-medium block mb-2">Meeting Type</label>
@@ -22,7 +22,7 @@ export default function MeetingForm() {
         <option value="Instant">Instant</option>
         <option value="Scheduled">Scheduled</option>
       </select>
-
+ 
       <label htmlFor="meeting-privacy" className="font-medium block mb-2">Meeting Privacy</label>
       <select name="meeting-privacy" id="meeting-privacy" className="w-full px-4 py-2 rounded-lg text-black mb-4">
         <option value="Public">Public</option>
