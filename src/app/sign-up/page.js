@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
-
-
+import register from '@/assets/signUp.jpg';
 export const metadata = {
   title: 'Sign up',
   description: 'MeetWave is an online meeting platform which is containing video conference, audio conference, screen sharing, chat and messaging, meeting controlling and others feature to arrange a meeting online.',
@@ -9,8 +9,11 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="container">
-      <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl">
+    <main className="container md:flex flex-row-reverse justify-between  ">
+      <div className="flex justify-center mx-auto md:w-1/2 ">
+        <Image src={register} alt="Brand Icon" className="" />
+      </div>
+      <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl md:w-1/2 ">
         <h2 className="text-3xl text-center">Sign Up Now</h2>
         <form className="flex flex-col mt-5 gap-5">
           <div className="flex flex-col ">
@@ -23,7 +26,7 @@ export default function Page() {
           </div>
           <div className="flex flex-col">
             <label className="mb-2 ">Photo</label>
-            <input className="   border bg-white     rounded py-[3px] px-3 text-black" type="file" name="photo"  />
+            <input className="   border bg-white     rounded py-[3px] px-3 text-black" type="file" name="photo" />
           </div>
           <div className="flex flex-col ">
             <label className="mb-2 ">Password</label>
@@ -48,7 +51,7 @@ export default function Page() {
 
         <div className="flex justify-between">
           <button className="flex gap-4 items-center bg-[#3b5998] px-4 py-2 rounded-sm font-semibold">
-            <FaFacebookF className="text-xl"/>
+            <FaFacebookF className="text-xl" />
             Facebook
           </button>
           <button className="flex gap-4 items-center bg-[#d34836] px-4 py-2 rounded-sm font-semibold">
@@ -57,6 +60,8 @@ export default function Page() {
           </button>
         </div>
       </div>
+
     </main>
   );
 };
+

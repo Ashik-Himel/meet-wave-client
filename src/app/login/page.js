@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGooglePlusG } from 'react-icons/fa';
-import { FaGoogle } from "react-icons/fa6";
+
+import register from '@/assets/signIn.svg';
+
 
 
 export const metadata = {
@@ -11,8 +13,11 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="container">
-      <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl">
+    <main className="container md:flex flex-row-reverse justify-between ">
+      <div className="flex justify-center mx-auto w-1/2 ">
+        <Image src={register} alt="Brand Icon" className="" />
+      </div>
+      <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl w-1/2 ">
         <h2 className="text-3xl text-center">Sign In</h2>
         <form className="flex flex-col mt-5 gap-5">
           <div className="flex flex-col ">
@@ -42,7 +47,7 @@ export default function Page() {
 
         <div className="flex justify-between">
           <button className="flex gap-4 items-center bg-[#3b5998] px-4 py-2 rounded-sm font-semibold">
-            <FaFacebookF className="text-xl"/>
+            <FaFacebookF className="text-xl" />
             Facebook
           </button>
           <button className="flex gap-4 items-center bg-[#d34836] px-4 py-2 rounded-sm font-semibold">
@@ -52,6 +57,10 @@ export default function Page() {
         </div>
 
       </div>
+
     </main>
   );
 };
+
+
+
