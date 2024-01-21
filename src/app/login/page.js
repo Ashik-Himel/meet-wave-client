@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGooglePlusG } from 'react-icons/fa';
@@ -10,7 +11,7 @@ export const metadata = {
   title: 'Login',
   description: 'MeetWave is an online meeting platform which is containing video conference, audio conference, screen sharing, chat and messaging, meeting controlling and others feature to arrange a meeting online.',
 }
-
+ 
 export default function Page() {
   return (
     <main className="container md:flex flex-row-reverse justify-between ">

@@ -1,21 +1,55 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client"
+const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${'b4efd57cf3e771c9ed3229c7d964e6e7'}`
+
+
+import { useState } from "react";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import register from '@/assets/signUp.jpg';
-export const metadata = {
-  title: 'Sign up',
-  description: 'MeetWave is an online meeting platform which is containing video conference, audio conference, screen sharing, chat and messaging, meeting controlling and others feature to arrange a meeting online.',
-}
+import Image from "next/image";
+import Link from "next/link";
+// import axios from "axios";
 
 export default function Page() {
+  const [userData, setUserData] = useState([])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(name, email, password);
+
+    // const inputFile = document.querySelector('input[type="file"]');
+    // const photo = inputFile.files[0];
+    // const formData = new FormData();
+    // formData.append('image', photo);
+
+    // try {
+    //   const res = await axios.post('http://localhost:3000/', formData, {
+    //     headers: {
+    //       'content-type': 'multipart/form-data',
+    //     },
+    //   });
+
+    //   console.log(res.data.data);
+    //   // Handle the response data as needed
+    // } catch (error) {
+    //   console.error('Error during image upload:', error.message);
+    //   // Handle the error appropriately, e.g., show an error message to the user
+    // }
+
+  };
+
   return (
     <main className="container md:flex flex-row-reverse justify-between  ">
       <div className="flex justify-center mx-auto md:w-1/2 ">
         <Image src={register} alt="Brand Icon" className="" />
       </div>
       <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl md:w-1/2 ">
-        <h2 className="text-3xl text-center">Sign Up Now</h2>
-        <form className="flex flex-col mt-5 gap-5">
+        <h2 className="text-3xl text-center">Sign Up</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col mt-5 gap-5">
           <div className="flex flex-col ">
             <label className="mb-2 ">Name</label>
             <input className="rounded py-[6px] px-3 text-black" type="name" name="name" placeholder="Type Your Name" />
@@ -32,12 +66,9 @@ export default function Page() {
             <label className="mb-2 ">Password</label>
             <input className="rounded py-[6px] px-3 text-black" type="password" name="password" placeholder="Type Your Password" />
           </div>
-          <div className="flex justify-between">
-            <div className="flex gap-2">
-              <input type="checkbox" className="text-sm" />
-              <p className="text-sm">Remember me</p>
-            </div>
-            <Link className="text-sm " href={'/'}>Forgot Password?</Link>
+          <div className="flex gap-2">
+            <input type="checkbox" className="text-sm" />
+            <p className="text-sm">Remember me</p>
           </div>
           <input className="btn btn-primary " type="Submit" />
         </form>
