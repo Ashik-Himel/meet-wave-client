@@ -1,18 +1,35 @@
-
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaGooglePlusG } from 'react-icons/fa';
+import { FaFacebookF, FaGooglePlusG, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import register from '@/assets/signIn.svg';
+import { useState } from "react";
 
 
 
-export const metadata = {
-  title: 'Login',
-  description: 'MeetWave is an online meeting platform which is containing video conference, audio conference, screen sharing, chat and messaging, meeting controlling and others feature to arrange a meeting online.',
-}
- 
+// export const metadata = {
+//   title: 'Login',
+//   description: 'MeetWave is an online meeting platform which is containing video conference, audio conference, screen sharing, chat and messaging, meeting controlling and others feature to arrange a meeting online.',
+// }
+
 export default function Page() {
+  const [show, setShow] = useState(true)
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+
+  };
+
+
+
+
   return (
     <main className="container md:flex flex-row-reverse justify-between ">
       <div className="flex justify-center mx-auto w-1/2 ">
@@ -20,14 +37,25 @@ export default function Page() {
       </div>
       <div className="max-w-[470px] mx-auto mt-10 bg-secondary p-5 md:p-10 rounded-xl w-1/2 ">
         <h2 className="text-3xl text-center">Sign In</h2>
-        <form className="flex flex-col mt-5 gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col mt-5 gap-5">
           <div className="flex flex-col ">
             <label className="mb-2 ">Email</label>
             <input className="rounded py-[6px] px-3 text-black" type="email" name="email" placeholder="Type Your Email" />
           </div>
-          <div className="flex flex-col ">
+          <div className="flex flex-col relative ">
             <label className="mb-2 ">Password</label>
-            <input className="rounded py-[6px] px-3 text-black" type="password" name="password" placeholder="Type Your Password" />
+            <span
+              onClick={() => setShow(!show)}
+              className="absolute right-5 top-6 cursor-pointer w-6"
+            >
+              {show ? <p><FaEyeSlash /></p> : <p><FaEye /></p>}
+            </span>
+            <input className="rounded py-[6px] px-3 text-black"
+              type={show ? "password" : "text"}
+              name="password"
+              required
+              placeholder="Type Your Password"
+            />
           </div>
           <div className="flex justify-between">
             <div className="flex gap-2">
