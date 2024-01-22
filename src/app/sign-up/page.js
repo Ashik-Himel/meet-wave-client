@@ -1,22 +1,16 @@
 "use client"
-const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${'b4efd57cf3e771c9ed3229c7d964e6e7'}`
-
+const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_SECRET_KEY}`
 
 import { useState } from "react";
 import { FaFacebookF, FaGooglePlusG, FaEye, FaEyeSlash } from "react-icons/fa";
 import register from '@/assets/signUp.jpg';
 import Image from "next/image";
 import Link from "next/link";
-// import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
-
 
 export default function Page() {
   const [show, setShow] = useState(true)
-  const session = useSession()
-
-  console.log(session)
-
+  const session = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +18,6 @@ export default function Page() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-
     console.log(name, email, password);
 
     // const inputFile = document.querySelector('input[type="file"]');
@@ -56,12 +49,10 @@ export default function Page() {
 
     if (!result.error) {
       // User signed in success and user redirect
-     
       console.log("Sign-in successful");
     } else {
       console.error("Sign-in error:", result.error);
     }
-
   };
 
   return (
@@ -109,9 +100,9 @@ export default function Page() {
         </form>
         <p className="text-sm mt-4">Already have an account? <Link href={'/login'} className="text-blue-300 underline">Sign in</Link></p>
 
-        <div class="flex justify-center">
+        <div className="flex justify-center">
           <div className="border-b-2 w-full h-7"> </div>
-          <div class="divider border-cyan-600">OR</div>
+          <div className="divider border-cyan-600">OR</div>
           <div className="border-b-2 w-full h-7"> </div>
         </div>
 
@@ -126,8 +117,6 @@ export default function Page() {
           </button>
         </div>
       </div>
-
     </main>
   );
 };
-

@@ -2,11 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGooglePlusG, FaEye, FaEyeSlash } from "react-icons/fa";
-
 import register from '@/assets/signIn.svg';
 import { useState } from "react";
-
-
 
 // export const metadata = {
 //   title: 'Login',
@@ -14,21 +11,15 @@ import { useState } from "react";
 // }
 
 export default function Page() {
-  const [show, setShow] = useState(true)
-
+  const [show, setShow] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-
     console.log(email, password);
-
   };
-
-
-
 
   return (
     <main className="container md:flex flex-row-reverse justify-between ">
@@ -68,9 +59,9 @@ export default function Page() {
         </form>
         <p className="text-sm mt-4">New Here? <Link href={'/sign-up'} className="text-blue-300 underline">Create an Account</Link></p>
 
-        <div class="flex justify-center">
+        <div className="flex justify-center">
           <div className="border-b-2 w-full h-7"> </div>
-          <div class="divider border-cyan-600">OR</div>
+          <div className="divider border-cyan-600">OR</div>
           <div className="border-b-2 w-full h-7"> </div>
         </div>
 
@@ -84,12 +75,7 @@ export default function Page() {
             Google
           </button>
         </div>
-
       </div>
-
     </main>
   );
 };
-
-
-
