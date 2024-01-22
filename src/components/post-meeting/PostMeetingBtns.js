@@ -7,7 +7,7 @@ export default function PostMeetingBtns() {
   const router = useRouter();
 
   const handleRejoin = () => {
-    router.push(`https://meet-wave.vercel.app/meeting/${searchParams.get('code')}?code=${searchParams.get('code')}`);
+    router.push(`${process.env.DOMAIN}/pre-meeting?code=${searchParams.get('code')}`);
   }
 
   return (

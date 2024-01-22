@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import brandIcon from '@/app/icon.png';
-import {FaCopy} from 'react-icons/fa6';
+import Image from "next/image";
 import { useParams } from "next/navigation";
+import { FaCopy } from 'react-icons/fa6';
 
 export default function MeetingTopBar() {
   const params = useParams();
@@ -12,7 +12,7 @@ export default function MeetingTopBar() {
       <div className="flex items-center gap-2">
         <Image src={brandIcon} alt="Brand Icon" className="w-[30px]" />
         <span className="font-medium">{params?.link}</span>
-        <FaCopy className="text-primary text-2xl ml-2 cursor-pointer select-none" onClick={() => navigator.clipboard.writeText(`https://meet-wave.vercel.app/meeting/${params.link}`)} />
+        <FaCopy className="text-primary text-2xl ml-2 cursor-pointer select-none" onClick={() => navigator.clipboard.writeText(`${process.env.DOMAIN}/meeting/${params.link}`)} />
       </div>
     </div>
   );

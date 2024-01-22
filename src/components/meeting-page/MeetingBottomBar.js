@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FaMicrophone, FaMicrophoneSlash, FaRegHandPaper } from 'react-icons/fa';
 import { FaGear, FaVideo, FaVideoSlash } from 'react-icons/fa6';
@@ -8,14 +8,14 @@ import { MdCallEnd, MdEmojiEmotions, MdOutlineScreenShare } from 'react-icons/md
 
 export default function MeetingBottomBar() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = useParams();
   const [micOpen, setMicOpen] = useState(true);
   const [videoOpen, setVideoOpen] = useState(true);
   const [screenShared, setScreenShared] = useState(false);
   const [handRaised, setHandRaised] = useState(false);
 
   const handleMeetingEnd = () => {
-    router.push(`https://meet-wave.vercel.app/post-meeting?code=${searchParams.get('code')}`);
+    router.push(`${process.env.DOMAIN}/post-meeting?code=${params?.link}`);
   }
 
   return (

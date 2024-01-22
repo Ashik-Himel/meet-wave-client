@@ -9,7 +9,6 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-        
         const user = { id: 1, name: credentials.name, email: credentials.email };
 
         if (user) {
@@ -25,7 +24,7 @@ const handler = NextAuth({
     }),
   ],
   pages: {
-    signIn: '/sign-in',
+    signIn: '/login',
   },
 });
 

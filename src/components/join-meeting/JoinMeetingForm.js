@@ -8,12 +8,12 @@ export default function JoinMeetingForm() {
     e.preventDefault();
 
     let linkCode;
-    if (!e.target['meeting-link'].value.startsWith('https://meet-wave.vercel.app/meeting/')) {
+    if (!e.target['meeting-link'].value.startsWith(`${process.env.DOMAIN}/meeting/`)) {
       return alert('Please enter a valid meeting link.');
     } else {
-      linkCode = e.target['meeting-link'].value.replace('https://meet-wave.vercel.app/meeting/', '');
+      linkCode = e.target['meeting-link'].value.replace(`${process.env.DOMAIN}/meeting/`, '');
     }
-    router.push(`https://meet-wave.vercel.app/pre-meeting?code=${linkCode}`);
+    router.push(`${process.env.DOMAIN}/pre-meeting?code=${linkCode}`);
   }
 
   return (
