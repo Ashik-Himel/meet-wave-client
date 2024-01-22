@@ -12,7 +12,7 @@ const PostMeeting = () => {
                    <div className="flex md:flex-row flex-col   h-full justify-around  items-center w-full ">
                         {/* left div */}
                         <div className="">
-                            <Image className="shadow-xl shadow-blue-400 lg:w-[400px] md:w-[300px] w-[280px] " src={thankPic} alt="thankPic" ></Image>
+                            <Image className=" lg:w-[400px] md:w-[300px] w-[280px] " src={thankPic} alt="thankPic" ></Image>
                         </div>
                         {/* right div */}
                         <div className="md:mt-0  mt-16">
