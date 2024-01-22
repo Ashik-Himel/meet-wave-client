@@ -1,11 +1,16 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import brandIcon from '@/app/icon.png';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
+import { useParams } from "next/navigation";
 
 export default function Footer() {
+  const params = useParams();
+  if (params?.link) return null;
+  
   return (
-    <footer className="pt-16 pb-6">
+    <footer className="pt-20 pb-6">
       <div className="container">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="space-y-4">
