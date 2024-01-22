@@ -8,12 +8,12 @@ export default function JoinMeetingForm() {
     e.preventDefault();
 
     let linkCode;
-    if (!e.target['meeting-link'].value.startsWith(`${process.env.DOMAIN}/meeting/`)) {
+    if (!e.target['meeting-link'].value.startsWith(`${process.env.NEXT_PUBLIC_DOMAIN}/meeting/`)) {
       return alert('Please enter a valid meeting link.');
     } else {
-      linkCode = e.target['meeting-link'].value.replace(`${process.env.DOMAIN}/meeting/`, '');
+      linkCode = e.target['meeting-link'].value.replace(`${process.env.NEXT_PUBLIC_DOMAIN}/meeting/`, '');
     }
-    router.push(`${process.env.DOMAIN}/pre-meeting?code=${linkCode}`);
+    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/pre-meeting?code=${linkCode}`);
   }
 
   return (

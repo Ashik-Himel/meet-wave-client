@@ -1,4 +1,4 @@
-const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_SECRET_KEY}`
+const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_SECRET_KEY}`
 
 import signUpImg from '@/assets/sign-up.png';
 import SignUpForm from '@/components/sign-up/SignUpForm';

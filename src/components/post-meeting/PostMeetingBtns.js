@@ -7,7 +7,7 @@ export default function PostMeetingBtns() {
   const router = useRouter();
 
   const handleRejoin = () => {
-    router.push(`${process.env.DOMAIN}/pre-meeting?code=${searchParams.get('code')}`);
+    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/pre-meeting?code=${searchParams.get('code')}`);
   }
 
   return (

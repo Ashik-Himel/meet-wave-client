@@ -21,7 +21,7 @@ export default function SignUpForm() {
     // formData.append('image', photo);
 
     // try {
-      // const res = await axios.post(`${process.env.DOMAIN}/`, formData, {
+      // const res = await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/`, formData, {
     //     headers: {
     //       'content-type': 'multipart/form-data',
     //     },

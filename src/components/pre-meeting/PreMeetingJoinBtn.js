@@ -6,7 +6,7 @@ export default function PreMeetingJoinBtn() {
   const router = useRouter();
 
   const handlePreMeetingBtn = () => {
-    router.push(`${process.env.DOMAIN}/meeting/${searchParams.get('code')}`)
+    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/meeting/${searchParams.get('code')}`)
   }
 
   return (

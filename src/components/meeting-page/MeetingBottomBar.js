@@ -15,7 +15,7 @@ export default function MeetingBottomBar() {
   const [handRaised, setHandRaised] = useState(false);
 
   const handleMeetingEnd = () => {
-    router.push(`${process.env.DOMAIN}/post-meeting?code=${params?.link}`);
+    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/post-meeting?code=${params?.link}`);
   }
 
   return (

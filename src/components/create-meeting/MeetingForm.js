@@ -9,7 +9,7 @@ export default function MeetingForm() {
   const onHandleSubmit = e => {
     e.preventDefault();
     const meetingCode = generateString(9);
-    router.push(`${process.env.DOMAIN}/pre-meeting?code=${meetingCode}`);
+    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/pre-meeting?code=${meetingCode}`);
   }
   const onTypeChange = e => {
     if (e.target.value === 'Scheduled') {
