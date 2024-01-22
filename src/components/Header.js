@@ -5,8 +5,10 @@ import brandIcon from '@/app/icon.png';
 import {FaBars} from 'react-icons/fa';
 import {FaXmark} from 'react-icons/fa6';
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function Header() {
+  const params = useParams();
   const [drawerShow, setDrawerShow] = useState(false);
   const drawerRef = useRef(null);
   const barRef = useRef(null);
@@ -25,6 +27,8 @@ export default function Header() {
       document.removeEventListener('click', handleDocumentClick);
     }
   }, []);
+
+  if (params?.link) return null;
 
   return (
     <header className="pt-6 pb-6">

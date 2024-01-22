@@ -1,5 +1,4 @@
 import MeetingForm from "@/components/create-meeting/MeetingForm";
-import Link from "next/link";
 import {FaArrowRight} from 'react-icons/fa';
 
 export default function Page() {
@@ -11,7 +10,7 @@ export default function Page() {
             <div className="w-full max-w-[415px]">
               <h2 className="text-3xl font-semibold mb-4 !leading-[1.4]">Create meeting easily by completing the form!</h2>
               <p className="mb-6">Create a meeting by felling up this form. Then just share the meeting link to get started.</p>
-              <Link href='/create-meeting' className="btn btn-primary [box-shadow:0px_0px_30px_rgba(33,128,232,0.25)]">Fill up now <FaArrowRight /></Link>
+              <label htmlFor="meeting-type" className="btn btn-primary [box-shadow:0px_0px_30px_rgba(33,128,232,0.25)]">Fill up now <FaArrowRight /></label>
             </div>
             <MeetingForm />
           </div>
