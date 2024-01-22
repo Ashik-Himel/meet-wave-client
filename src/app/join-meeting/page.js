@@ -1,5 +1,6 @@
 import Image from "next/image";
 import sectionImg from '@/assets/filter-section-img.png';
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -12,7 +13,9 @@ export default function Page() {
               <p className="mb-6">Past the meeting link below and click on the &apos;Join Now&apos; button to join in the meeting.</p>
               <form className="w-full max-w-[350px] flex justify-center gap-2">
                 <input type="url" name="meeting-link" id="meeting-link" className="w-full px-4 py-2 rounded-lg text-black" placeholder="Enter the meeting link" required />
+                <Link href={'/pre-meeting'}>
                 <button type="submit" className="btn btn-primary [box-shadow:0px_0px_30px_rgba(33,128,232,0.25)]">Join Now</button>
+                </Link>
               </form>
             </div>
             <div>
