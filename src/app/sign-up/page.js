@@ -13,14 +13,14 @@ export default function Page() {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="hidden md:block w-full md:w-auto flex-1">
-              <Image src={signUpImg} alt="Sign Up Image" className="w-full max-w-[400px] mx-auto" />
+              <Image src={signUpImg} alt="Sign Up Image" className="w-full max-w-[500px] mx-auto" />
             </div>
             <div className="flex-1 w-full md:w-auto">
-              <div className="bg-secondary p-6 w-full max-w-[400px] mx-auto rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)]">
+              <div className="bg-secondary p-6 w-full max-w-[500px] mx-auto rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)]">
                 <h2 className="text-2xl font-medium text-center mb-4">Sign Up</h2>
                 <SignUpForm />
 
-                <p className="text-sm">Already have an account? <Link href='/login' className="text-blue-400 underline font-medium">Login now</Link></p>
+                <p className="text-sm">Already have an account? <Link href='/login' className="text-blue-400 font-medium">Login now</Link></p>
 
                 <div className="divider before:bg-white after:bg-white">OR</div>
 

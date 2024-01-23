@@ -27,8 +27,8 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center gap-4 mb-4">
-        <label className="text-sm flex gap-2 items-center cursor-pointer" htmlFor="remember">
+      <div className="flex justify-between items-center gap-2 mb-4">
+        <label className="text-sm flex gap-1 sm:gap-2 items-center cursor-pointer" htmlFor="remember">
           <input type="checkbox" name="remember" id="remember" />
           Remember me
         </label>

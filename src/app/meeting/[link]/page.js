@@ -5,7 +5,7 @@ import MeetingTopBar from "@/components/meeting-page/MeetingTopBar";
 export default function Page() {
   return (
     <main>
-      <section className="h-screen w-full max-w-[1536px] p-6 mx-auto space-y-4">
+      <section className="h-screen w-full max-w-[1536px] mx-auto">
         <MeetingTopBar />
         <MeetingMiddleSection />
         <MeetingBottomBar />

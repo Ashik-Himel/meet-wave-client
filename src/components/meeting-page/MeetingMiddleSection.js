@@ -3,8 +3,8 @@ import manIcon from '@/assets/man-icon.png';
 
 export default function MeetingMiddleSection() {
   return (
-    <div className="h-[calc(100%-130px)] overflow-y-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 relative">
+    <div className="h-screen overflow-y-auto mx-6 pt-[78px] pb-[84px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         <ProfileCard />
         <ProfileCard />
         <ProfileCard />
