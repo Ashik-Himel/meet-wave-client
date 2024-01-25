@@ -101,7 +101,7 @@ export default function Header() {
               </> : <>
                 <Link href='/login' className="btn btn-primary sm:from-secondary sm:to-secondary">Login</Link>
                 <Link href='/sign-up' className="btn btn-primary hidden sm:inline-flex">Sign up</Link>
-              </> : <span class="loading loading-spinner loading-md"></span>
+              </> : <span className="loading loading-spinner loading-md"></span>
             }
 
             <div className="text-2xl ml-2 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(true)} ref={barRef}>
