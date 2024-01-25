@@ -1,8 +1,18 @@
+'use client';
 import thankPic from "@/assets/thank-you.png";
 import PostMeetingBtns from "@/components/post-meeting/PostMeetingBtns";
+import useAllContext from "@/hooks/useAllContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const PostMeeting = () => {
+  const router = useRouter();
+  const {user} = useAllContext();
+
+  if (!user) {
+    return router.push('/login');
+  }
+
   return (
     <main className="mt-12" >
       <section className="container">

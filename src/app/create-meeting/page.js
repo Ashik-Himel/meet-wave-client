@@ -1,7 +1,17 @@
+'use client';
 import MeetingForm from "@/components/create-meeting/MeetingForm";
+import useAllContext from "@/hooks/useAllContext";
+import { useRouter } from "next/navigation";
 import {FaArrowRight} from 'react-icons/fa';
 
 export default function Page() {
+  const router = useRouter();
+  const {user} = useAllContext();
+
+  if (!user) {
+    return router.push('/login');
+  }
+
   return (
     <main>
       <section className="mt-12">

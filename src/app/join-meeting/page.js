@@ -1,8 +1,18 @@
+'use client';
 import Image from "next/image";
 import sectionImg from '@/assets/banner-img.png';
 import JoinMeetingForm from "@/components/join-meeting/JoinMeetingForm";
+import { useRouter } from "next/navigation";
+import useAllContext from "@/hooks/useAllContext";
 
 export default function Page() {
+  const router = useRouter();
+  const {user} = useAllContext();
+
+  if (!user) {
+    return router.push('/login');
+  }
+
   return (
     <main>
       <section className="mt-12">

@@ -1,7 +1,17 @@
+'use client';
 import PreMeetingControl from '@/components/pre-meeting/PreMeetingControl';
 import PreMeetingJoinBtn from '@/components/pre-meeting/PreMeetingJoinBtn';
+import useAllContext from '@/hooks/useAllContext';
+import { useRouter } from 'next/navigation';
 
 const PreMeetingPage = () => {
+  const router = useRouter();
+  const {user} = useAllContext();
+
+  if (!user) {
+    return router.push('/login');
+  }
+
   return (
     <main>
       <section className='mt-12'>
