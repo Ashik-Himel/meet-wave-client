@@ -1,4 +1,3 @@
-
 'use client';
 
 import { FaMicrophone, FaMicrophoneSlash } from 'react-icons/fa';
@@ -11,7 +10,6 @@ export default function PreMeetingControl() {
   const [isCameraOn, setIsCameraOn] = useState(true);
   const [isMicrophoneMuted, setIsMicrophoneMuted] = useState(false);
   const [soundLevel, setSoundLevel] = useState(0);
-  // console.log(soundLevel)
 
   const toggleCamera = () => {
     setIsCameraOn((prev) => !prev);
@@ -19,7 +17,6 @@ export default function PreMeetingControl() {
 
   const toggleMicrophone = () => {
     setIsMicrophoneMuted((prev) => !prev);
-    setSoundLevel(0);
   };
 
   useEffect(() => {
@@ -75,11 +72,12 @@ export default function PreMeetingControl() {
           borderRadius: '8px',
         }}
       />
+
       {/* sound checker bar */}
       {!isMicrophoneMuted && (
         <div className='absolute bottom-6 left-4'>
-          <div className='border-2 border-slate-600 w-28 h-3 rounded-full overflow-hidden  ' >
-            <div className='rounded-full bg-blue-600 h-[100%]' style={{ width: `${soundLevel - 10}px`, }}></div>
+          <div className='border-2 border-slate-600 w-28 h-3 rounded-full overflow-hidden'>
+            <div className='rounded-full bg-blue-600 h-[100%]' style={{ width: `${soundLevel }px` }}></div>
           </div>
         </div>
       )}

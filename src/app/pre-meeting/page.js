@@ -27,7 +27,6 @@ const PreMeetingPage = () => {
         setMicrophoneDevices(microphones);
         setSpeakerDevices(speakers);
 
-        // Set default selected devices if available
         if (cameras.length > 0) setSelectedCamera(cameras[0].deviceId);
         if (microphones.length > 0) setSelectedMicrophone(microphones[0].deviceId);
         if (speakers.length > 0) setSelectedSpeaker(speakers[0].deviceId);
@@ -51,7 +50,7 @@ const PreMeetingPage = () => {
                 <div className="bg-secondary w-full  aspect-video rounded-lg">
                   <PreMeetingControl />
                 </div>
-
+                    
               </div>
 
               <form className='flex justify-center items-center gap-4 mt-6 '>
@@ -96,61 +95,6 @@ const PreMeetingPage = () => {
                 </select>
               </form>
 
-
-
-              {/* <form className='flex justify-center items-center  gap-4 px-4 mt-6'>
-                <select name="camera" id="camera" className='w-full bg-transparent text-white border-2 rounded-full px-4 py-px cursor-pointer'>
-                  <option value="Camera">Camera</option>
-                </select>
-                <select name="microphone" id="microphone" className='w-full bg-transparent text-white border-2 rounded-full px-4 py-px cursor-pointer'>
-                  <option value="Microphone">Microphone</option>
-                </select>
-                <select name="speaker" id="speaker" className='w-full bg-transparent text-white border-2 rounded-full px-4 py-px cursor-pointer'>
-                  <option value="Speaker">Speaker</option>
-                </select>
-
-                <label>
-                  Select Camera:
-                  <select
-                    value={selectedCamera}
-                    onChange={(e) => setSelectedCamera(e.target.value)}
-                  >
-                    {cameraDevices.map((camera) => (
-                      <option key={camera.deviceId} value={camera.deviceId}>
-                        {camera.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <label>
-                  Select Microphone:
-                  <select
-                    value={selectedMicrophone}
-                    onChange={(e) => setSelectedMicrophone(e.target.value)}
-                  >
-                    {microphoneDevices.map((microphone) => (
-                      <option key={microphone.deviceId} value={microphone.deviceId}>
-                        {microphone.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <label>
-                  Select Speaker:
-                  <select
-                    value={selectedSpeaker}
-                    onChange={(e) => setSelectedSpeaker(e.target.value)}
-                  >
-                    {speakerDevices.map((speaker) => (
-                      <option key={speaker.deviceId} value={speaker.deviceId}>
-                        {speaker.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </form> */}
             </div>
             <div className='flex-1 w-full md:w-auto text-center'>
               <h1 className='text-2xl font-semibold mb-4'>Ready to Join Meeting?</h1>
