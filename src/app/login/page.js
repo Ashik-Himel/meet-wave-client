@@ -9,6 +9,7 @@ import { auth } from "@/configs/firebase.config";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
+import LoadingPage from "../loading";
 
 export default function Page() {
   const router = useRouter();
@@ -51,11 +52,7 @@ export default function Page() {
   }
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   } else if (user) {
     return router.push('/');
   }

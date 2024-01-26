@@ -4,6 +4,7 @@ import PreMeetingJoinBtn from '@/components/pre-meeting/PreMeetingJoinBtn';
 import { useEffect, useState } from 'react';
 import useAllContext from '@/hooks/useAllContext';
 import { useRouter } from 'next/navigation';
+import LoadingPage from '../loading';
 
 const PreMeetingPage = () => {
   const router = useRouter();
@@ -42,11 +43,7 @@ const PreMeetingPage = () => {
   }, []);
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   }
   
   if (!user) {

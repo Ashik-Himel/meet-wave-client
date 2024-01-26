@@ -4,17 +4,14 @@ import PostMeetingBtns from "@/components/post-meeting/PostMeetingBtns";
 import useAllContext from "@/hooks/useAllContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import LoadingPage from "../loading";
 
 const PostMeeting = () => {
   const router = useRouter();
   const {user, userLoaded} = useAllContext();
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   }
   
   if (!user) {

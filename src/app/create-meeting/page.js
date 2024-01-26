@@ -3,17 +3,14 @@ import MeetingForm from "@/components/create-meeting/MeetingForm";
 import useAllContext from "@/hooks/useAllContext";
 import { useRouter } from "next/navigation";
 import {FaArrowRight} from 'react-icons/fa';
+import LoadingPage from "../loading";
 
 export default function Page() {
   const router = useRouter();
   const {user, userLoaded} = useAllContext();
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   }
   if (!user) {
     return router.push('/login');

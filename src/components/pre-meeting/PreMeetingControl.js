@@ -55,7 +55,6 @@ export default function PreMeetingControl() {
     };
 
     initializeAudioContext();
-
   }, []);
 
   return (
@@ -67,20 +66,19 @@ export default function PreMeetingControl() {
         className={`aspect-[4/3] rounded-lg ${isCameraOn ? 'block' : 'hidden'}`}
       />
 
-      {/* sound checker bar */}
-      {!isMicrophoneMuted && (
-        <div className='absolute bottom-6 left-4'>
-          <div className='border-2 border-slate-600 w-28 h-3 rounded-full overflow-hidden'>
-            <div className='rounded-full bg-blue-600 h-[100%]' style={{ width: `${soundLevel }px` }}></div>
+      <div className='absolute bottom-0 left-1/2 -translate-x-1/2 w-full p-4 flex justify-center items-center gap-4'>
+        <div className={`w-[calc(50%-40px)] ${isMicrophoneMuted ? 'invisible' : 'visible'}`}>
+          <div className='border-2 border-white w-28 h-3 rounded-full overflow-hidden'>
+            <div className='rounded-full bg-blue-600 h-[100%]' style={{ width: `${soundLevel}px` }}></div>
           </div>
         </div>
-      )}
-      <div className='flex justify-center items-center gap-2 text-xl absolute bottom-4 md:left-1/2 right-0 -translate-x-1/2'>
-        <div className={`p-2 rounded-full cursor-pointer select-none ${!isMicrophoneMuted ? 'bg-primary' : 'bg-red-500'}`} onClick={toggleMicrophone}>
-          {isMicrophoneMuted ? <FaMicrophoneSlash /> : <FaMicrophone />}
-        </div>
-        <div className={`p-2 rounded-full cursor-pointer select-none ${isCameraOn ? 'bg-primary' : 'bg-red-500'}`} onClick={toggleCamera}>
-          {isCameraOn ? <FaVideo /> : <FaVideoSlash />}
+        <div className='flex justify-end sm:justify-start items-center gap-2 text-xl w-[calc(50%+40px)]'>
+          <div className={`p-2 rounded-full cursor-pointer select-none ${!isMicrophoneMuted ? 'bg-primary' : 'bg-red-500'}`} onClick={toggleMicrophone}>
+            {isMicrophoneMuted ? <FaMicrophoneSlash /> : <FaMicrophone />}
+          </div>
+          <div className={`p-2 rounded-full cursor-pointer select-none ${isCameraOn ? 'bg-primary' : 'bg-red-500'}`} onClick={toggleCamera}>
+            {isCameraOn ? <FaVideo /> : <FaVideoSlash />}
+          </div>
         </div>
       </div>
     </div>

@@ -4,17 +4,14 @@ import sectionImg from '@/assets/banner-img.png';
 import JoinMeetingForm from "@/components/join-meeting/JoinMeetingForm";
 import { useRouter } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
+import LoadingPage from "../loading";
 
 export default function Page() {
   const router = useRouter();
   const {user, userLoaded} = useAllContext();
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   }
   
   if (!user) {

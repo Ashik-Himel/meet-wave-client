@@ -1,4 +1,5 @@
 'use client';
+import LoadingPage from "@/app/loading";
 import MeetingBottomBar from "@/components/meeting-page/MeetingBottomBar";
 import MeetingMiddleSection from "@/components/meeting-page/MeetingMiddleSection";
 import MeetingTopBar from "@/components/meeting-page/MeetingTopBar";
@@ -10,11 +11,7 @@ export default function Page() {
   const {user, userLoaded} = useAllContext();
 
   if (!userLoaded) {
-    return (
-      <div className="text-center mt-12">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingPage />;
   }
   
   if (!user) {
