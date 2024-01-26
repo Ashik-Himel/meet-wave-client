@@ -39,7 +39,6 @@ export default function Page() {
       }
     })
       .then(res => {
-        console.log(res.data?.data?.url);
         createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           updateProfile(auth.currentUser, {displayName, photoURL: res.data?.data?.url})
@@ -77,8 +76,8 @@ export default function Page() {
       if (password) setShowEye(true)
       else setShowEye(false)
 
-      if (password.length < 6) {
-        setErrorMsg("Password must be at least 6 characters!");
+      if (password.length < 8) {
+        setErrorMsg("Password must be at least 8 characters!");
         return;
       }
       else if (!/[A-Z]/.test(password)) {
@@ -133,7 +132,7 @@ export default function Page() {
                       }
                     </div>
                   </div>
-                  <p className="text-red-600 font-medium mt-3">{errorMsg}</p>
+                  <p className="text-red-600 font-medium mb-4">{errorMsg}</p>
 
                   <button type="submit" className="btn btn-primary btn-block mb-4 disabled:bg-red-500 disabled:bg-opacity-40" disabled={!isActive}>Sign Up</button>
                 </form>

@@ -88,12 +88,14 @@ export default function Header() {
             {
               userLoaded ? user ? <>
                 <div className="flex justify-center items-center gap-2 cursor-pointer select-none relative" onClick={() => setProfileCardShow(!profileCardShow)} ref={navImgRef}>
-                  <Image src={user?.photoURL} alt="User's Photo" width={35} height={35} className="rounded-full" />
-                  <span className="hidden sm:block">{user?.displayName.split(' ')[0]}</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={user?.photoURL} alt="User's Photo" width={35} height={35} className="rounded-full" />
+                  <span className="hidden sm:block">{user?.displayName && user?.displayName?.split(' ')[0]}</span>
                   <span className={`w-6 h-6 bg-secondary rotate-45 absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 ${profileCardShow ? 'block' : 'hidden'}`}></span>
                 </div>
                 <div className={`absolute top-[calc(100%+1rem)] right-0 bg-secondary p-6 rounded-lg w-full max-w-[350px] text-center ${profileCardShow ? 'block' : 'hidden'}`} ref={profileBoxRef}>
-                  <Image src={user?.photoURL} alt="User's Photo" width={60} height={60} className="rounded-full block mx-auto mb-4" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={user?.photoURL} alt="User's Photo" width={60} height={60} className="rounded-full block mx-auto mb-4" />
                   <span className="block text-[18px] font-medium">{user?.displayName}</span>
                   <span className="block mb-4">{user?.email}</span>
                   <button type="button" className="btn btn-warning" onClick={handleLogout}>Logout</button>

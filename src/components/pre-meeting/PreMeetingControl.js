@@ -60,7 +60,7 @@ export default function PreMeetingControl() {
   return (
     <div>
       <Webcam
-        audio={!isMicrophoneMuted}
+        audio={false}
         mirrored={true}
         ref={webcamRef}
         className={`aspect-[4/3] rounded-lg ${isCameraOn ? 'block' : 'hidden'}`}
