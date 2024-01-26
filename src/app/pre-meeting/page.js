@@ -6,7 +6,8 @@ import useAllContext from '@/hooks/useAllContext';
 import { useRouter } from 'next/navigation';
 
 const PreMeetingPage = () => {
-
+  const router = useRouter();
+  const {user, userLoaded} = useAllContext();
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [selectedMicrophone, setSelectedMicrophone] = useState(null);
   const [selectedSpeaker, setSelectedSpeaker] = useState(null);
@@ -15,22 +16,23 @@ const PreMeetingPage = () => {
   const [microphoneDevices, setMicrophoneDevices] = useState([]);
   const [speakerDevices, setSpeakerDevices] = useState([]);
 
-
   useEffect(() => {
     const getMediaDevices = async () => {
       try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const cameras = devices.filter((device) => device.kind === 'videoinput');
-        const microphones = devices.filter((device) => device.kind === 'audioinput');
-        const speakers = devices.filter((device) => device.kind === 'audiooutput');
+        const devices = await navigator?.mediaDevices?.enumerateDevices();
+        if (devices) {
+          const cameras = devices?.filter((device) => device?.kind === 'videoinput');
+          const microphones = devices?.filter((device) => device?.kind === 'audioinput');
+          const speakers = devices?.filter((device) => device?.kind === 'audiooutput');
 
-        setCameraDevices(cameras);
-        setMicrophoneDevices(microphones);
-        setSpeakerDevices(speakers);
+          setCameraDevices(cameras);
+          setMicrophoneDevices(microphones);
+          setSpeakerDevices(speakers);
 
-        if (cameras.length > 0) setSelectedCamera(cameras[0].deviceId);
-        if (microphones.length > 0) setSelectedMicrophone(microphones[0].deviceId);
-        if (speakers.length > 0) setSelectedSpeaker(speakers[0].deviceId);
+          if (cameras?.length > 0) setSelectedCamera(cameras[0]?.deviceId);
+          if (microphones?.length > 0) setSelectedMicrophone(microphones[0]?.deviceId);
+          if (speakers?.length > 0) setSelectedSpeaker(speakers[0]?.deviceId);
+        }
       } catch (error) {
         console.error('Error enumerating devices:', error);
       }
@@ -39,11 +41,14 @@ const PreMeetingPage = () => {
     getMediaDevices();
   }, []);
 
-
-
-  const router = useRouter();
-  const {user} = useAllContext();
-
+  if (!userLoaded) {
+    return (
+      <div className="text-center mt-12">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+  
   if (!user) {
     return router.push('/login');
   }

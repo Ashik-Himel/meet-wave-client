@@ -51,7 +51,11 @@ export default function Page() {
   }
 
   if (!userLoaded) {
-    return null;
+    return (
+      <div className="text-center mt-12">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   } else if (user) {
     return router.push('/');
   }
