@@ -14,6 +14,8 @@ export default function Home() {
       <DiscussionSection />
       <AppSection />
       <VariousAppSection />
+      
     </main>
   )
 }
+

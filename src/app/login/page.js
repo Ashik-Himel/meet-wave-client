@@ -29,6 +29,7 @@ export default function Page() {
       })
       .catch((error) => toast.error(error.message))
   };
+  
   const githubLogin = () => {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
