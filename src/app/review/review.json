@@ -1,0 +1,45 @@
+[
+    {
+      "id":1,
+      "userName": "BusinessPro2024",
+      "userProfile": "https://i.ibb.co/Zg4Z6xS/memder1.jpg",
+      "review": "This online meeting platform has revolutionized the way we collaborate remotely. Seamless interface and great features!",
+      "stars": 5
+    },
+    {
+      "id":2,
+      "userName": "RemoteWorker123",
+      "userProfile": "https://i.ibb.co/X8Bt51F/member2.jpg",
+      "review": "As someone who works remotely full-time, I rely heavily on online meeting platforms. This one stands out with its reliability and ease of use.",
+      "stars": 4
+    },
+    {
+      "id":3,
+      "userName": "TechSavvyManager",
+      "userProfile": "https://i.ibb.co/86CqJPN/member6.jpg",
+      "review": "Impressed by the platform's versatility and integration options. Makes managing virtual teams much smoother.",
+      "stars": 5
+    },
+    {
+      "id":4,
+      "userName": "DisappointedUser456",
+      "userProfile": "https://i.ibb.co/X8Bt51F/member2.jpg",
+      "review": "Encountered several technical glitches during important meetings. Needs improvement in terms of stability.",
+      "stars": 2
+    },
+    { 
+      "id":5,
+      "userName": "NewUser789",
+      "userProfile": "https://i.ibb.co/86CqJPN/member6.jpg",
+      "review": "Easy to get started even for someone new to online meetings. Intuitive interface and helpful tutorials.",
+      "stars": 4
+    },
+    {
+      "id":6,
+      "userName": "FreelanceConsultant",
+      "userProfile": "https://i.ibb.co/86CqJPN/member6.jpg",
+      "review": "The platform's screen sharing feature is a game-changer for my consulting sessions. Clients love the interactive presentations.",
+      "stars": 5
+    }
+  ]
+  
