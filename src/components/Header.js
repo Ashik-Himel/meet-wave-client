@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import brandIcon from '@/app/icon.png';
-import {FaBars} from 'react-icons/fa';
-import {FaXmark} from 'react-icons/fa6';
+import { FaBars } from 'react-icons/fa';
+import { FaXmark } from 'react-icons/fa6';
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
@@ -12,7 +12,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/configs/firebase.config";
 
 export default function Header() {
-  const {user, userLoaded} = useAllContext();
+  const { user, userLoaded } = useAllContext();
   const params = useParams();
   const [drawerShow, setDrawerShow] = useState(false);
   const [profileCardShow, setProfileCardShow] = useState(false);
@@ -20,6 +20,13 @@ export default function Header() {
   const barRef = useRef(null);
   const profileBoxRef = useRef(null);
   const navImgRef = useRef(null);
+  const [users, setAllUser] = useState([])
+
+  useEffect(() => {
+    fetch('https://meet-wave-server.vercel.app/all-users')
+      .then(res => res.json())
+      .then(data => setAllUser(data))
+  }, [])
 
   useEffect(() => {
     const handleDocumentClick = e => {
@@ -64,7 +71,7 @@ export default function Header() {
             <span className="text-2xl font-medium">Meet<span className="text-primary">Wave.</span></span>
           </Link>
 
-          <ul className="font-medium flex flex-col lg:flex-row justify-center items-center gap-6 fixed lg:static top-0 bottom-0 w-4/5 max-w-[300px] lg:w-auto lg:max-w-none bg-secondary lg:bg-transparent text-xl lg:text-base transition-[right] duration-300 lg:transition-none z-50" style={drawerShow ? {right: '0'} : {right: '-350px'}} ref={drawerRef}>
+          <ul className="font-medium flex flex-col lg:flex-row justify-center items-center gap-6 fixed lg:static top-0 bottom-0 w-4/5 max-w-[300px] lg:w-auto lg:max-w-none bg-secondary lg:bg-transparent text-xl lg:text-base transition-[right] duration-300 lg:transition-none z-50" style={drawerShow ? { right: '0' } : { right: '-350px' }} ref={drawerRef}>
             <FaXmark className="text-3xl text-primary absolute top-6 left-6 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(false)} />
             <li>
               <Link href='/' onClick={() => setDrawerShow(false)}>Home</Link>
@@ -75,6 +82,11 @@ export default function Header() {
             <li>
               <Link href='/join-meeting' onClick={() => setDrawerShow(false)}>Join Meeting</Link>
             </li>
+            {user?.email && users.find(u => u.email === user.email && u.role === "admin") && (
+              <li>
+                <Link href='/dashboard' onClick={() => setDrawerShow(false)}>Dashboard</Link>
+              </li>
+            )}
 
             {
               !user && <div className="flex justify-center items-center gap-4 lg:hidden">
@@ -93,12 +105,15 @@ export default function Header() {
                   <span className="hidden sm:block">{user?.displayName && user?.displayName?.split(' ')[0]}</span>
                   <span className={`w-6 h-6 bg-secondary rotate-45 absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 ${profileCardShow ? 'block' : 'hidden'}`}></span>
                 </div>
-                <div className={`absolute top-[calc(100%+1rem)] right-0 bg-secondary p-6 rounded-lg w-full max-w-[350px] text-center ${profileCardShow ? 'block' : 'hidden'}`} ref={profileBoxRef}>
+                <div className={`absolute top-[calc(100%+1rem)] right-0 bg-secondary p-6 rounded-lg w-full max-w-[350px] text-center z-10 ${profileCardShow ? 'block' : 'hidden'}`} ref={profileBoxRef}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={user?.photoURL} alt="User's Photo" width={60} height={60} className="rounded-full block mx-auto mb-4" />
                   <span className="block text-[18px] font-medium">{user?.displayName}</span>
                   <span className="block mb-4">{user?.email}</span>
-                  <button type="button" className="btn btn-warning" onClick={handleLogout}>Logout</button>
+                  <div className="flex justify-center items-center gap-2">
+                    <Link href='/dashboard' className="btn btn-primary" onClick={() => setProfileCardShow(false)}>Dashboard</Link>
+                    <button type="button" className="btn btn-warning" onClick={handleLogout}>Logout</button>
+                  </div>
                 </div>
               </> : <>
                 <Link href='/login' className="btn btn-primary sm:from-secondary sm:to-secondary">Login</Link>

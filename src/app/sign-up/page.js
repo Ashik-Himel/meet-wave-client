@@ -14,16 +14,17 @@ import { useRouter } from "next/navigation";
 import LoadingPage from "../loading";
 
 export default function Page() {
+
   const router = useRouter();
-  const {user, userLoaded} = useAllContext();
+  const { user, userLoaded } = useAllContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  // console.log(user?.email);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-
     const form = e.target;
     const displayName = form.name.value;
     const email = form.email.value;
@@ -33,24 +34,41 @@ export default function Page() {
     let formData = new FormData();
     formData.append('image', img);
 
-    axios.post(image_hoisting_api, formData, {
+    const res = await axios.post(image_hoisting_api, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
-      .then(res => {
-        createUserWithEmailAndPassword(auth, email, password)
+    if (res.data?.success) {
+      createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
-          updateProfile(auth.currentUser, {displayName, photoURL: res.data?.data?.url})
+          updateProfile(auth.currentUser, { displayName, photoURL: res.data?.data?.url })
             .then(() => {
-              toast.success("Signup Successful!");
+              // create user entry in the database
+              const userInfo = {
+                name: displayName,
+                email: email,
+                role: 'user',
+                status:true,
+                photoURL: res.data?.data?.url,
+              }
+              console.log(userInfo);
+              axios.post('https://meet-wave-server.vercel.app/all-users', userInfo)
+                .then(res => {
+                  if (res.data?.insertedId) {
+                    toast.success("Successfully Registered");
+                    form.reset();
+                    console.log(res.data);
+                  }
+                })
             })
             .catch((error) => toast.error(error.message))
         })
         .catch((error) => toast.error(error.message))
-      })
-      .catch((error) => toast.error(error.message))
+    }
   }
+
+
   const githubLogin = () => {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
@@ -100,7 +118,7 @@ export default function Page() {
   } else if (user) {
     return router.push('/');
   }
-  
+
   return (
     <main>
       <section className="mt-12">
@@ -112,7 +130,7 @@ export default function Page() {
             <div className="flex-1 w-full md:w-auto">
               <div className="bg-secondary p-6 w-full max-w-[500px] mx-auto rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)]">
                 <h2 className="text-2xl font-medium text-center mb-4">Sign Up</h2>
-                
+
                 <form onSubmit={handleSubmit}>
                   <label className="font-medium block mb-2" htmlFor="name">Name</label>
                   <input className="text-black w-full px-4 py-2 rounded-lg mb-4" type="text" name="name" id="name" placeholder='Enter your name' required />

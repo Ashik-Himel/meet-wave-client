@@ -9,7 +9,6 @@ import VariousAppSection from "@/components/home/VariousAppSection";
 export default function Home() {
   return (
     <main>
-      
       <Banner />
       <TrustCard />
       <FilterSection />
@@ -20,3 +19,4 @@ export default function Home() {
     </main>
   )
 }
+
