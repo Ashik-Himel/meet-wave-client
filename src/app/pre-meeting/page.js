@@ -1,13 +1,14 @@
 'use client';
-import PreMeetingControl from '@/components/pre-meeting/PreMeetingControl';
-import PreMeetingJoinBtn from '@/components/pre-meeting/PreMeetingJoinBtn';
+import PreMeetingControl from './PreMeetingControl';
 import { useEffect, useState } from 'react';
 import useAllContext from '@/hooks/useAllContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import LoadingPage from '../loading';
+import Link from 'next/link';
 
 const PreMeetingPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const {user, userLoaded} = useAllContext();
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [selectedMicrophone, setSelectedMicrophone] = useState(null);
@@ -45,7 +46,6 @@ const PreMeetingPage = () => {
   if (!userLoaded) {
     return <LoadingPage />;
   }
-  
   if (!user) {
     return router.push('/login');
   }
@@ -59,8 +59,7 @@ const PreMeetingPage = () => {
               <div className='relative'>
                 <div className="bg-secondary w-full aspect-[4/3] rounded-lg">
                   <PreMeetingControl />
-                </div>
-                    
+                </div> 
               </div>
 
               <form className='flex justify-center items-center gap-4 mt-6 '>
@@ -108,7 +107,7 @@ const PreMeetingPage = () => {
             </div>
             <div className='flex-1 w-full md:w-auto text-center'>
               <h1 className='text-2xl font-semibold mb-4'>Ready to Join Meeting?</h1>
-              <PreMeetingJoinBtn />
+              <Link href={`/meeting/${searchParams.get('code')}`} className="btn btn-primary [box-shadow:0px_0px_30px_rgba(33,128,232,0.25)]">Join Now</Link>
             </div>
           </div>
         </div>

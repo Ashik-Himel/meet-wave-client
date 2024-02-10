@@ -1,8 +1,8 @@
 'use client';
 import LoadingPage from "@/app/loading";
-import MeetingBottomBar from "@/components/meeting-page/MeetingBottomBar";
-import MeetingMiddleSection from "@/components/meeting-page/MeetingMiddleSection";
-import MeetingTopBar from "@/components/meeting-page/MeetingTopBar";
+import MeetingBottomBar from "./MeetingBottomBar";
+import MeetingMiddleSection from "./MeetingMiddleSection";
+import MeetingTopBar from "./MeetingTopBar";
 import useAllContext from "@/hooks/useAllContext";
 import { useRouter } from "next/navigation";
 

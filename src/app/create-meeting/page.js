@@ -1,5 +1,5 @@
 'use client';
-import MeetingForm from "@/components/create-meeting/MeetingForm";
+import MeetingForm from "./MeetingForm";
 import useAllContext from "@/hooks/useAllContext";
 import { useRouter } from "next/navigation";
 import {FaArrowRight} from 'react-icons/fa';

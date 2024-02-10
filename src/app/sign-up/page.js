@@ -12,16 +12,16 @@ import axios from "axios";
 import useAllContext from "@/hooks/useAllContext";
 import { useRouter } from "next/navigation";
 import LoadingPage from "../loading";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 export default function Page() {
-
   const router = useRouter();
   const { user, userLoaded } = useAllContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  // console.log(user?.email);
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -44,23 +44,9 @@ export default function Page() {
         .then(() => {
           updateProfile(auth.currentUser, { displayName, photoURL: res.data?.data?.url })
             .then(() => {
-              // create user entry in the database
-              const userInfo = {
-                name: displayName,
-                email: email,
-                role: 'user',
-                status:true,
-                photoURL: res.data?.data?.url,
-              }
-              console.log(userInfo);
-              axios.post('https://meet-wave-server.vercel.app/all-users', userInfo)
-                .then(res => {
-                  if (res.data?.insertedId) {
-                    toast.success("Successfully Registered");
-                    form.reset();
-                    console.log(res.data);
-                  }
-                })
+              axiosPublic.post('/users', {email, name: displayName}, {withCredentials: true})
+                .then(() => toast.success("Sign Up Successful !!!"))
+                .catch(error => toast.error(error.code))
             })
             .catch((error) => toast.error(error.message))
         })
@@ -68,20 +54,23 @@ export default function Page() {
     }
   }
 
-
-  const githubLogin = () => {
-    const githubProvider = new GithubAuthProvider();
-    signInWithPopup(auth, githubProvider)
-      .then(() => {
-        toast.success("Login Successful!");
-      })
-      .catch(error => toast.error(error.message));
-  }
   const googleLogin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
-      .then(() => {
-        toast.success("Login Successful!");
+      .then((userCredential) => {
+        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+          .then(() => toast.success("Login Successful!"))
+          .catch(error => toast.error(error.message))
+      })
+      .catch(error => toast.error(error.message));
+  }
+  const githubLogin = () => {
+    const githubProvider = new GithubAuthProvider();
+    signInWithPopup(auth, githubProvider)
+      .then((userCredential) => {
+        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+          .then(() => toast.success("Login Successful!"))
+          .catch(error => toast.error(error.message))
       })
       .catch(error => toast.error(error.message));
   }

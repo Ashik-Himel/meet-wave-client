@@ -2,17 +2,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import brandIcon from '@/app/icon.png';
-import { FaBars } from 'react-icons/fa';
-import { FaXmark } from 'react-icons/fa6';
+import { IoGridOutline } from 'react-icons/io5';
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
 import toast from "react-hot-toast";
 import { signOut } from "firebase/auth";
 import { auth } from "@/configs/firebase.config";
+import Sidebar from "./Sidebar";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 export default function Header() {
-  const { user, userLoaded } = useAllContext();
+  const { user, userRole, userLoaded } = useAllContext();
   const params = useParams();
   const [drawerShow, setDrawerShow] = useState(false);
   const [profileCardShow, setProfileCardShow] = useState(false);
@@ -20,13 +21,7 @@ export default function Header() {
   const barRef = useRef(null);
   const profileBoxRef = useRef(null);
   const navImgRef = useRef(null);
-  const [users, setAllUser] = useState([])
-
-  useEffect(() => {
-    fetch('https://meet-wave-server.vercel.app/all-users')
-      .then(res => res.json())
-      .then(data => setAllUser(data))
-  }, [])
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const handleDocumentClick = e => {
@@ -51,19 +46,21 @@ export default function Header() {
   const handleLogout = () => {
     setProfileCardShow(false);
 
-    signOut(auth)
+    axiosSecure('/logout')
       .then(() => {
-        toast.success('Logout Successful !!!');
+        signOut(auth)
+          .then(() => {
+            toast.success('Logout Successful !!!');
+          })
+          .catch(error => toast.error(error.code))
       })
-      .catch(error => {
-        toast.error(error.code);
-      })
+      .catch(error => toast.error(error.code))
   }
 
   if (params?.link) return null;
 
   return (
-    <header className="pt-6 pb-6">
+    <header className="py-6">
       <div className="container">
         <nav className="flex justify-between items-center gap-6 relative">
           <Link href='/' className="flex justify-center items-center gap-2">
@@ -71,29 +68,16 @@ export default function Header() {
             <span className="text-2xl font-medium">Meet<span className="text-primary">Wave.</span></span>
           </Link>
 
-          <ul className="font-medium flex flex-col lg:flex-row justify-center items-center gap-6 fixed lg:static top-0 bottom-0 w-4/5 max-w-[300px] lg:w-auto lg:max-w-none bg-secondary lg:bg-transparent text-xl lg:text-base transition-[right] duration-300 lg:transition-none z-50" style={drawerShow ? { right: '0' } : { right: '-350px' }} ref={drawerRef}>
-            <FaXmark className="text-3xl text-primary absolute top-6 left-6 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(false)} />
+          <ul className="font-medium hidden lg:flex flex-row justify-center items-center gap-6">
             <li>
-              <Link href='/' onClick={() => setDrawerShow(false)}>Home</Link>
+              <Link href='/'>Home</Link>
             </li>
             <li>
-              <Link href='/create-meeting' onClick={() => setDrawerShow(false)}>Create a Meeting</Link>
+              <Link href='/create-meeting'>Create a Meeting</Link>
             </li>
             <li>
-              <Link href='/join-meeting' onClick={() => setDrawerShow(false)}>Join Meeting</Link>
+              <Link href='/join-meeting'>Join Meeting</Link>
             </li>
-            {user?.email && users.find(u => u.email === user.email && u.role === "admin") && (
-              <li>
-                <Link href='/dashboard' onClick={() => setDrawerShow(false)}>Dashboard</Link>
-              </li>
-            )}
-
-            {
-              !user && <div className="flex justify-center items-center gap-4 lg:hidden">
-                <Link href='/login' className="btn" onClick={() => setDrawerShow(false)}>Login</Link>
-                <Link href='/sign-up' className="btn btn-primary" onClick={() => setDrawerShow(false)}>Sign up</Link>
-              </div>
-            }
           </ul>
 
           <div className="flex justify-center items-center gap-2">
@@ -105,13 +89,17 @@ export default function Header() {
                   <span className="hidden sm:block">{user?.displayName && user?.displayName?.split(' ')[0]}</span>
                   <span className={`w-6 h-6 bg-secondary rotate-45 absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 ${profileCardShow ? 'block' : 'hidden'}`}></span>
                 </div>
+
+                {/* Profile Card */}
                 <div className={`absolute top-[calc(100%+1rem)] right-0 bg-secondary p-6 rounded-lg w-full max-w-[350px] text-center z-10 ${profileCardShow ? 'block' : 'hidden'}`} ref={profileBoxRef}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={user?.photoURL} alt="User's Photo" width={60} height={60} className="rounded-full block mx-auto mb-4" />
                   <span className="block text-[18px] font-medium">{user?.displayName}</span>
                   <span className="block mb-4">{user?.email}</span>
                   <div className="flex justify-center items-center gap-2">
-                    <Link href='/dashboard' className="btn btn-primary" onClick={() => setProfileCardShow(false)}>Dashboard</Link>
+                    {
+                      userRole === "admin" && <Link href='/dashboard' className="btn btn-primary" onClick={() => setProfileCardShow(false)}>Dashboard</Link>
+                    }
                     <button type="button" className="btn btn-warning" onClick={handleLogout}>Logout</button>
                   </div>
                 </div>
@@ -121,11 +109,12 @@ export default function Header() {
               </> : <span className="loading loading-spinner loading-md"></span>
             }
 
-            <div className="text-2xl ml-2 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(true)} ref={barRef}>
-              <FaBars />
+            <div className="text-2xl ml-2 cursor-pointer select-none lg:hidden" onClick={() => setDrawerShow(!drawerShow)} ref={barRef}>
+              <IoGridOutline />
             </div>
           </div>
         </nav>
+        <Sidebar drawerShow={drawerShow} setDrawerShow={setDrawerShow} drawerRef={drawerRef} user={user} userRole={userRole} handleLogout={handleLogout}  />
       </div>
     </header>
   );

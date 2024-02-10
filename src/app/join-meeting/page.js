@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import sectionImg from '@/assets/banner-img.png';
-import JoinMeetingForm from "@/components/join-meeting/JoinMeetingForm";
+import JoinMeetingForm from "./JoinMeetingForm";
 import { useRouter } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
 import LoadingPage from "../loading";

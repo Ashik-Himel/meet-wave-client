@@ -1,13 +1,14 @@
 'use client';
 import thankPic from "@/assets/thank-you.png";
-import PostMeetingBtns from "@/components/post-meeting/PostMeetingBtns";
 import useAllContext from "@/hooks/useAllContext";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import LoadingPage from "../loading";
+import Link from "next/link";
 
 const PostMeeting = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const {user, userLoaded} = useAllContext();
 
   if (!userLoaded) {
@@ -27,7 +28,10 @@ const PostMeeting = () => {
           </div>
           <div className="w-full md:w-auto flex-1">
             <h1 className="text-2xl font-semibold text-center mb-4">The meeting is  closed</h1>
-            <PostMeetingBtns />
+            <div className="flex justify-center items-center gap-4">
+              <Link href={`/pre-meeting?code=${searchParams.get('code')}`} className="btn btn-primary">Rejoin</Link>
+              <Link href='/' className="btn btn-secondary">Return Home</Link>
+            </div>
           </div>
         </div>
       </section>

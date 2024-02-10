@@ -10,12 +10,14 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
 import LoadingPage from "../loading";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 export default function Page() {
   const router = useRouter();
   const {user, userLoaded} = useAllContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,27 +27,33 @@ export default function Page() {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        toast.success('Login Successful!');
+        axiosPublic.post('/users', {email}, {withCredentials: true})
+          .then(() => toast.success('Login Successful !!!'))
+          .catch(error => toast.error(error.message))
       })
       .catch((error) => toast.error(error.message))
   };
   
-  const githubLogin = () => {
-    const githubProvider = new GithubAuthProvider();
-    signInWithPopup(auth, githubProvider)
-      .then(() => {
-        toast.success("Login Successful!");
-      })
-      .catch(error => toast.error(error.message));
-  };
   const googleLogin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
-      .then(() => {
-        toast.success("Login Successful!");
+      .then((userCredential) => {
+        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+          .then(() => toast.success("Login Successful!"))
+          .catch(error => toast.error(error.message))
       })
       .catch(error => toast.error(error.message));
-  };
+  }
+  const githubLogin = () => {
+    const githubProvider = new GithubAuthProvider();
+    signInWithPopup(auth, githubProvider)
+      .then((userCredential) => {
+        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+          .then(() => toast.success("Login Successful!"))
+          .catch(error => toast.error(error.message))
+      })
+      .catch(error => toast.error(error.message));
+  }
   const handlePassOnChange = e => {
     const password = e.target.value;
     if (password) setShowEye(true);

@@ -1,43 +1,34 @@
 'use client';
-import { auth } from "@/configs/firebase.config";
-import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { auth } from "@/configs/firebase.config";
+import { onAuthStateChanged } from "firebase/auth";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 export const AllContext = createContext(null);
 
 export default function ContextProvider({children}) {
   const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState(null);
   const [userLoaded, setUserLoaded] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
-      setUserLoaded(true);
-      console.log(user)
       if(user?.email){
-        const userInfo = {
-          name: user?.displayName,
-          email: user?.email,
-          status:true,
-          role: 'user',
-          photoURL: user?.photoURL
-        }
-        axios.post('https://meet-wave-server.vercel.app/all-users', userInfo)
+        axiosPublic(`/user-role?email=${user?.email}`, {withCredentials: true})
           .then(res => {
-            if (res.data?.insertedId) {
-              toast.success("Successfully Registered");
-              console.log(res.data);
-            }
+            setUserRole(res.data?.role);
           })
       }
+      setUserLoaded(true);
     })
     return ()=> unSubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const value = {
     user,
+    userRole,
     userLoaded
   };
 
