@@ -52,7 +52,7 @@ const PreMeetingPage = () => {
 
   return (
     <main>
-      <section className='mt-12'>
+      <section className='my-12'>
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className='flex-1 w-full md:w-auto'>

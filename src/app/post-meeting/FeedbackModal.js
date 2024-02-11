@@ -33,6 +33,7 @@ export default function FeedbackModal({modalActive, setModalActive}) {
       photo: user?.photoURL,
       rating,
       feedback,
+      time: new Date(),
       featured: false
     }
 
@@ -46,23 +47,25 @@ export default function FeedbackModal({modalActive, setModalActive}) {
   }
 
   return (
-    <div className="fixed left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] mx-6 px-6 py-8 bg-secondary rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)] border border-primary transition-[top] duration-300 z-50" style={modalActive ? {top: '50%'} : {top: '-100%'}}>
-      <h3 className='text-primary text-center text-2xl font-medium mb-6'>Send Feedback</h3>
-      <div className='flex justify-center items-center gap-1 text-yellow-600 text-xl mb-4 [&>*]:cursor-pointer [&>*]:select-none'>
-        {
-          ratingStars?.map(star => star)
-        }
-      </div>
-
-      <form onSubmit={handleFeedbackSubmit}>
-        <input type="number" name="rating" id="rating" value={rating} readOnly hidden />
-        <textarea name="feedback" id="feedback" placeholder='Write your feedback here' className='textarea w-full h-[100px] bg-inherit border-2 border-primary focus:border-primary resize-none' required></textarea>
-
-        <div className='flex justify-center items-center gap-2 mt-4'>
-          <button type="submit" className='btn btn-primary'>Send</button>
-          <button type="button" className='btn btn-error text-white' onClick={() => setModalActive(false)}>Close</button>
+    <div className="fixed left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] transition-[top] duration-300 z-50" style={modalActive ? {top: '50%'} : {top: '-100%'}}>
+      <div className='mx-6 px-6 py-8 bg-secondary rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)] border border-primary'>
+        <h3 className='text-primary text-center text-2xl font-medium mb-6'>Send Feedback</h3>
+        <div className='flex justify-center items-center gap-1 text-yellow-600 text-xl mb-4 [&>*]:cursor-pointer [&>*]:select-none'>
+          {
+            ratingStars?.map(star => star)
+          }
         </div>
-      </form>
+
+        <form onSubmit={handleFeedbackSubmit}>
+          <input type="number" name="rating" id="rating" value={rating} readOnly hidden />
+          <textarea name="feedback" id="feedback" placeholder='Write your feedback here' className='textarea w-full h-[100px] bg-inherit border-2 border-primary focus:border-primary resize-none' required></textarea>
+
+          <div className='flex justify-center items-center gap-2 mt-4'>
+            <button type="submit" className='btn btn-primary'>Send</button>
+            <button type="button" className='btn btn-error text-white' onClick={() => setModalActive(false)}>Close</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

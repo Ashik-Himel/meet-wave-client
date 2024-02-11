@@ -1,4 +1,5 @@
 'use client';
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import {FaStar, FaRegStar} from 'react-icons/fa6';
 
@@ -12,7 +13,7 @@ export default function FeedbackCard({feedback}) {
       else ratingElements.push(<FaRegStar key={i} />)
     }
     setRatingStars(ratingElements);
-  }, [feedback]);
+  }, []);
 
   return (
     <div className="bg-secondary p-6 rounded-lg">
@@ -27,8 +28,8 @@ export default function FeedbackCard({feedback}) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={feedback?.photo} alt="User's Photo" className="w-[50px] h-[50px] rounded-full object-cover object-center" />
         <div className="flex flex-col">
-          <span className="text-xl font-medium">{feedback?.name}</span>
-          <span>{feedback?.email}</span>
+          <span className="text-[18px] font-medium mb-[2px]">{feedback?.name?.split(' ')[0]}</span>
+          <span className="text-sm">{format(feedback?.time, "dd MMM, yyyy hh:mm aa")}</span>
         </div>
       </div>
     </div>

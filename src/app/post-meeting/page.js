@@ -23,7 +23,7 @@ const PostMeeting = () => {
   }
 
   return (
-    <main className="mt-12" >
+    <main className="my-12" >
       <section className="container">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="w-full md:w-auto flex-1">

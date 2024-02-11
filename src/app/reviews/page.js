@@ -9,10 +9,10 @@ export default function ReviewPage() {
 
   useEffect(() => {
     axiosPublic('/feedbacks')
-      .then(data => {
-        setFeedbacks(data.data);
+      .then(res => {
+        setFeedbacks(res.data);
       })
-  }, [axiosPublic]);
+  }, []);
 
   return (
     <main>

@@ -38,7 +38,7 @@ export default function Page() {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -48,7 +48,7 @@ export default function Page() {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -68,7 +68,7 @@ export default function Page() {
 
   return (
     <main>
-      <section className="mt-12">
+      <section className="my-12">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex-1 w-full md:w-auto">
