@@ -25,13 +25,20 @@ export default function Page() {
     const email = form.email.value;
     const password = form.password.value;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        axiosPublic.post('/users', {email}, {withCredentials: true})
-          .then(() => toast.success('Login Successful !!!'))
-          .catch(error => toast.error(error.message))
+    axiosPublic(`user-status?email=${email}`)
+      .then(res => {
+        if (res.data?.status === 'disabled') {
+          toast.error("Your account is disabled !!!");
+        } else {
+          signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+              axiosPublic.post('/users', {email}, {withCredentials: true})
+                .then(() => toast.success('Login Successful !!!'))
+                .catch(error => toast.error(error.message))
+            })
+            .catch((error) => toast.error(error.message))
+        }
       })
-      .catch((error) => toast.error(error.message))
   };
   
   const googleLogin = () => {

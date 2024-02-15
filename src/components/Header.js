@@ -98,7 +98,7 @@ export default function Header() {
                   <span className="block mb-4">{user?.email}</span>
                   <div className="flex justify-center items-center gap-2">
                     {
-                      userRole === "admin" && <Link href='/dashboard' className="btn btn-primary" onClick={() => setProfileCardShow(false)}>Dashboard</Link>
+                      userRole === "admin" && <Link href='/dashboard/home' className="btn btn-primary" onClick={() => setProfileCardShow(false)}>Dashboard</Link>
                     }
                     <button type="button" className="btn btn-warning" onClick={handleLogout}>Logout</button>
                   </div>
