@@ -1,11 +1,18 @@
+"use client"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import bannerImg from '@/assets/banner-img.png';
 
 export default function Banner() {
+  useEffect(()=>{
+    AOS.init({})
+  },[])
   return (
     <section>
-      <div className="container">
+      <div className="container" data-aos="fade-down" data-aos-duration="1500">
         <div className="mt-10 sm:mt-16 w-full max-w-[700px] mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-semibold !leading-[1.25] mb-4">Free Online Meeting Platform For <span className="text-primary">Everyone</span></h1>
           <p className="mb-6">Nowadays you can collaborate with people all over the world, use our product for a feature-rich collaboration experience and it&apos;s also free!</p>
