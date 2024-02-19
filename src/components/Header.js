@@ -78,6 +78,9 @@ export default function Header() {
             <li>
               <Link href='/join-meeting'>Join Meeting</Link>
             </li>
+            <li>
+              <Link href='/about-us'>About-Us</Link>
+            </li>
           </ul>
 
           <div className="flex justify-center items-center gap-2">
