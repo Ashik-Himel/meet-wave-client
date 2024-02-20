@@ -55,6 +55,18 @@ export default function AboutUs(){
 
     return(
          <div className='container'>
+
+          <h1 className='text-center font-bold  my-10 text-4xl'> <h1 className='text-center font-bold  my-10 text-4xl'>What do you know about this website? </h1> </h1>
+      
+             <div>
+                
+             </div>
+
+
+
+
+
+
               <h1 className='text-center font-bold  my-10 text-4xl'>Do you know about our team ? </h1>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,7 +76,7 @@ export default function AboutUs(){
                          data-aos={item?.animate}
                          data-aos-duration="1500"
                          className="shadow-lg p-2 pr-0 shadow-blue-400 rounded-lg gap-6 flex">
-                              <img className="w-40 h-40" src={item?.image} />
+                              <img className="w-40 h-40 rounded-lg" src={item?.image} />
 
                               <div>
                                    <h1 className="font-bold text-lg">{item?.name}</h1>
