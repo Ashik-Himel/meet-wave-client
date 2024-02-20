@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import useAllContext from "@/hooks/useAllContext";
 import LoadingPage from "../loading";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 export default function Page() {
   const router = useRouter();
@@ -70,17 +71,21 @@ export default function Page() {
 
   const handleResetPassword = () => {
     const email = emailRef.current.value;
-    if(!email){
+    if (!email) {
       return toast.error("Please provide an email")
     }
-    else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+    else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
       return toast.error("Please Provide a valid email")
+      // return toast.error("Please Provide a valid email")
     }
 
     // send validation email
     sendPasswordResetEmail(auth, email)
-    .then(()=> toast.success("Please check your email"))
-    .catch(error => toast.error(error.message))
+      .then(() => Swal.fire({
+        title: "Please check your email",
+        icon: "success"
+      }))
+      .catch(error => toast.error(error.message))
 
 
   }
