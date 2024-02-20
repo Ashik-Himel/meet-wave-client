@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import loginImg from '@/assets/login.png';
 import { FaGithub, FaGooglePlusG, FaEye, FaEyeSlash } from "react-icons/fa";
-import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "@/configs/firebase.config";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -76,6 +76,13 @@ export default function Page() {
     else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
       return toast.error("Please Provide a valid email")
     }
+
+    // send validation email
+    sendPasswordResetEmail(auth, email)
+    .then(()=> toast.success("Please check your email"))
+    .catch(error => toast.error(error.message))
+
+
   }
 
   if (!userLoaded) {
