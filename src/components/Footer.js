@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import brandIcon from '@/app/icon.png';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 export default function Footer() {
-  const params = useParams();
-  if (params?.link) return null;
+  const pathname = usePathname();
+  if (!(pathname === '/' || pathname === '/reviews')) return null;
   
   return (
     <footer className="pt-20 pb-6">

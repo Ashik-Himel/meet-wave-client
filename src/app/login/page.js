@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import loginImg from '@/assets/login.png';
 import { FaGithub, FaGooglePlusG, FaEye, FaEyeSlash } from "react-icons/fa";
 import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -14,10 +14,11 @@ import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 export default function Page() {
   const router = useRouter();
-  const {user, userLoaded} = useAllContext();
+  const { user, userLoaded } = useAllContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const emailRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,20 +26,27 @@ export default function Page() {
     const email = form.email.value;
     const password = form.password.value;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        axiosPublic.post('/users', {email}, {withCredentials: true})
-          .then(() => toast.success('Login Successful !!!'))
-          .catch(error => toast.error(error.message))
+    axiosPublic(`user-status?email=${email}`)
+      .then(res => {
+        if (res.data?.status === 'disabled') {
+          toast.error("Your account is disabled !!!");
+        } else {
+          signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+              axiosPublic.post('/users', { email }, { withCredentials: true })
+                .then(() => toast.success('Login Successful !!!'))
+                .catch(error => toast.error(error.message))
+            })
+            .catch((error) => toast.error(error.message))
+        }
       })
-      .catch((error) => toast.error(error.message))
   };
-  
+
   const googleLogin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+        axiosPublic.post('/users', { name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL }, { withCredentials: true })
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -48,7 +56,7 @@ export default function Page() {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {email: userCredential.user?.email, name: userCredential.user?.displayName}, {withCredentials: true})
+        axiosPublic.post('/users', { name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL }, { withCredentials: true })
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -60,6 +68,16 @@ export default function Page() {
     else setShowEye(false);
   }
 
+  const handleResetPassword = () => {
+    const email = emailRef.current.value;
+    if(!email){
+      return toast.error("Please provide an email")
+    }
+    else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+      return toast.error("Please Provide a valid email")
+    }
+  }
+
   if (!userLoaded) {
     return <LoadingPage />;
   } else if (user) {
@@ -68,16 +86,21 @@ export default function Page() {
 
   return (
     <main>
-      <section className="mt-12">
+      <section className="my-12">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex-1 w-full md:w-auto">
               <div className="bg-secondary p-6 w-full max-w-[500px] mx-auto rounded-lg [box-shadow:0px_-5px_75px_rgba(33,128,232,0.25)]">
                 <h2 className="text-2xl font-medium text-center mb-4">Login</h2>
-                
+
                 <form onSubmit={handleSubmit}>
                   <label className="font-medium block mb-2" htmlFor="email">Email</label>
-                  <input className="text-black w-full px-4 py-2 rounded-lg mb-4" type="email" name="email" id="email" placeholder="Enter your email" required />
+                  <input
+                    className="text-black w-full px-4 py-2 rounded-lg mb-4"
+                    type="email" name="email" id="email"
+                    placeholder="Enter your email"
+                    ref={emailRef}
+                    required />
                   <label className="font-medium block mb-2" htmlFor="password">Password</label>
                   <div className="relative mb-4 text-black">
                     <input className="w-full px-4 py-2 rounded-lg" onChange={handlePassOnChange} type={showPassword ? 'text' : 'password'} name="password" id="password" placeholder="Enter your password" required />
@@ -93,7 +116,7 @@ export default function Page() {
                       <input type="checkbox" name="remember" id="remember" />
                       Remember me
                     </label>
-                    <Link className="text-sm" href='/'>Forgot Password?</Link>
+                    <p onClick={handleResetPassword} className="text-sm cursor-pointer" >Forgot Password?</p>
                   </div>
                   <button type="submit" className="btn btn-primary btn-block mb-4">Login</button>
                 </form>

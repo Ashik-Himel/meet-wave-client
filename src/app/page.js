@@ -15,7 +15,7 @@ export default function Home() {
       <DiscussionSection />
       <AppSection />
       <VariousAppSection />
-      <ReviewSection></ReviewSection>
+      <ReviewSection />
     </main>
   )
 }

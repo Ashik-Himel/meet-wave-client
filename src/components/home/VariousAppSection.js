@@ -1,13 +1,20 @@
+"use client"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { useEffect } from "react";
 import Image from 'next/image';
 import playStore from '@/assets/icons/play-store.png';
 import appStore from '@/assets/icons/app-store.png';
 import microsoftStore from '@/assets/icons/microsoft-store.png';
 
 export default function VariousAppSection() {
+  useEffect(()=>{
+    AOS.init({})
+  },[])
   return (
     <section className='mt-16'>
       <div className="container">
-        <div className='w-full max-w-[650px] mx-auto text-center'>
+        <div className='w-full max-w-[650px] mx-auto text-center' data-aos="zoom-in" data-aos-duration="1500">
           <h2 className="text-3xl font-semibold mb-4 !leading-[1.4]">Download for free in various app stores</h2>
           <p className='mb-6'>We are providing our application in various types of platform. Download our application, install it and get started easily.</p>
 

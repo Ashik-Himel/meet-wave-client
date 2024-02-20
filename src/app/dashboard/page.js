@@ -7,7 +7,7 @@ export default function Page() {
 
   useEffect(() => {
     router.push('/dashboard/home');
-  }, [router]);
+  }, []);
 
   return null;
 };

@@ -5,9 +5,12 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import LoadingPage from "../loading";
 import Link from "next/link";
+import FeedbackModal from "./FeedbackModal";
+import { useState } from "react";
 
 const PostMeeting = () => {
   const router = useRouter();
+  const [modalActive, setModalActive] = useState(false);
   const searchParams = useSearchParams();
   const {user, userLoaded} = useAllContext();
 
@@ -20,7 +23,7 @@ const PostMeeting = () => {
   }
 
   return (
-    <main className="mt-12" >
+    <main className="my-12" >
       <section className="container">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="w-full md:w-auto flex-1">
@@ -32,8 +35,12 @@ const PostMeeting = () => {
               <Link href={`/pre-meeting?code=${searchParams.get('code')}`} className="btn btn-primary">Rejoin</Link>
               <Link href='/' className="btn btn-secondary">Return Home</Link>
             </div>
+            <div className="text-center mt-4">
+              <button type="button" className="text-primary font-medium" onClick={() => setModalActive(true)}>Send Feedback</button>
+            </div>
           </div>
         </div>
+        <FeedbackModal modalActive={modalActive} setModalActive={setModalActive} />
       </section>
     </main>
     );

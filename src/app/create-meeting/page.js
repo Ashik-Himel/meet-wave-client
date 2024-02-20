@@ -9,16 +9,12 @@ export default function Page() {
   const router = useRouter();
   const {user, userLoaded} = useAllContext();
 
-  if (!userLoaded) {
-    return <LoadingPage />;
-  }
-  if (!user) {
-    return router.push('/login');
-  }
+  if (!userLoaded) return <LoadingPage />;
+  if (!user) return router.push('/login');
 
   return (
     <main>
-      <section className="mt-12">
+      <section className="my-12">
         <div className="container">
           <div className="flex flex-col md:flex-row gap-x-8 gap-y-6 justify-between md:items-center">
             <div className="w-full max-w-[415px]">
