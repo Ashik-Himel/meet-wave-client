@@ -11,6 +11,7 @@ export default function ContextProvider({children}) {
   const [userRole, setUserRole] = useState(null);
   const [userLoaded, setUserLoaded] = useState(false);
   const axiosPublic = useAxiosPublic();
+  console.log(user);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, user => {

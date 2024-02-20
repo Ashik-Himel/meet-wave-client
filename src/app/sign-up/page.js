@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import signUpImg from '@/assets/sign-up.png';
 import { FaGooglePlusG, FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, updateProfile } from "firebase/auth";
 import { auth } from "@/configs/firebase.config";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -39,26 +39,32 @@ export default function Page() {
         'Content-Type': 'multipart/form-data'
       }
     })
+
     if (res.data?.success) {
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           updateProfile(auth.currentUser, { displayName, photoURL: res.data?.data?.url })
             .then(() => {
-              axiosPublic.post('/users', {name: displayName, email, photo: res?.data?.data?.url}, {withCredentials: true})
-                .then(() => toast.success("Sign Up Successful !!!"))
+              axiosPublic.post('/users', { name: displayName, email, photo: res?.data?.data?.url }, { withCredentials: true })
+              // .then(() => toast.success("Sign Up Successful !!!"))
+                .then(() =>  router.push('/verify-email'))
                 .catch(error => toast.error(error.code))
             })
             .catch((error) => toast.error(error.message))
+          
+
         })
+
         .catch((error) => toast.error(error.message))
     }
   }
+
 
   const googleLogin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
+        axiosPublic.post('/users', { name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL }, { withCredentials: true })
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -68,7 +74,7 @@ export default function Page() {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
+        axiosPublic.post('/users', { name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL }, { withCredentials: true })
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -105,7 +111,7 @@ export default function Page() {
   if (!userLoaded) {
     return <LoadingPage />;
   } else if (user) {
-    return router.push('/');
+    return router.push('/verify-email');
   }
 
   return (
