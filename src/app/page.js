@@ -3,6 +3,7 @@ import Banner from "@/components/home/Banner";
 import DiscussionSection from "@/components/home/DiscussionSection";
 import FilterSection from "@/components/home/FilterSection";
 import ReviewSection from "@/components/home/ReviewSection";
+import ReviewSlider from "@/components/home/ReviewSlider";
 import TrustCard from "@/components/home/TrustCard";
 import VariousAppSection from "@/components/home/VariousAppSection";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <AppSection />
       <VariousAppSection />
       <ReviewSection />
+      <ReviewSlider/>
     </main>
   )
 }
