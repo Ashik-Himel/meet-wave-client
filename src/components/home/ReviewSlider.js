@@ -3,13 +3,13 @@ import useAxiosPublic from '@/hooks/useAxiosPublic';
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
-import logo from '@/assets/banner-img.png';
+// import logo from '@/assets/banner-img.png';
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const ReviewSlider = () => {
     const [feedbacks, setFeedbacks] = useState([]);
@@ -35,9 +35,9 @@ const ReviewSlider = () => {
             <Swiper navigation={true} modules={[Navigation, Autoplay]} className="mySwiper">
                 {
                     feedbacks?.map(data => <SwiperSlide key={data._id}>
-                        <div className='space-y-3 md:px-10'>
+                        <div className='space-y-3 px-7 md:px-10  py-5 rounded-xl bg-secondary text-sm md:text-base'>
                             <div className='text-center'>
-                                <Image src={logo} alt="user Image" width={60} height={60} className='rounded-full mx-auto ' />
+                                <img src={data?.photo} alt="user Image" width={60} height={60} className='rounded-full mx-auto ' />
                                 <h1 className='font-bold text-lg'>{data?.name}</h1>
                             </div>
 
