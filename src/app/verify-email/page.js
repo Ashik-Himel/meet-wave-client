@@ -21,7 +21,7 @@ const Page = () => {
           setVerificationEmailSent(true);
           setInterval(() => {
             window.location.reload();
-        }, 25000);
+        }, 19000);
         })
         .catch((error) => toast.error(error.message));
     }
@@ -33,7 +33,7 @@ const Page = () => {
 
   if (!userLoaded) {
     return <LoadingPage />;
-  } else if (user?.emailVerified) {
+  } else if (user?.emailVerified || !user ) {
     return router.push('/');
   }
 
