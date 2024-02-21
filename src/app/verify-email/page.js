@@ -17,10 +17,24 @@ console.log(user?.emailVerified);
              sendEmailVerification(auth.currentUser)
              .then(()=>{
                 toast.success('Please check email')
-                // if(auth?.currentUser?.emailVerified){
-                //     console.log('ok');
-                //    return router.push('/')
-                // }
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 5000);
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 10000);
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 15000);
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 20000);
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 25000);
+                setInterval(() => {
+                    window.location.reload(); // Reload the page every second
+                }, 30000);
 
              })
              .catch((error)=> toast.error(error.message))
