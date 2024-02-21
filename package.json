@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@smastrom/react-rating": "^1.5.0",
     "@zegocloud/zego-uikit-prebuilt": "^1.10.2",
     "aos": "^2.3.4",
     "axios": "^1.6.6",
