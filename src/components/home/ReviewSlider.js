@@ -10,6 +10,8 @@ import '@smastrom/react-rating/style.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 // import Image from 'next/image';
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 const ReviewSlider = () => {
     const [feedbacks, setFeedbacks] = useState([]);
@@ -30,8 +32,12 @@ const ReviewSlider = () => {
 
     }, []);
 
+    useEffect(() => {
+        AOS.init({})
+    }, [])
+
     return (
-        <div className='mb-10'>
+        <div data-aos="fade-right" data-aos-duration="2000" className='mb-10 '>
             <Swiper navigation={true} modules={[Navigation, Autoplay]} className="mySwiper">
                 {
                     feedbacks?.map(data => <SwiperSlide key={data._id}>
@@ -45,10 +51,10 @@ const ReviewSlider = () => {
                                 <p className=' text-2xl font-semibold'>{data?.campName}</p>
                                 <div className='text-center mx-auto flex justify-center'>
                                     <Rating
-                                            style={{ maxWidth: 120 }}
-                                            value={data?.rating}
-                                            readOnly
-                                        />
+                                        style={{ maxWidth: 120 }}
+                                        value={data?.rating}
+                                        readOnly
+                                    />
                                 </div>
                                 <h1 className=''>{data?.feedback}</h1>
                                 <h1 className=''>{data?.time}</h1>

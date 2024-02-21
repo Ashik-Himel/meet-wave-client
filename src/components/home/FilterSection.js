@@ -10,6 +10,7 @@ export default function FilterSection() {
   useEffect(() => {
     AOS.init({})
   }, [])
+  
   return (
     <section className="mt-0 md:mt-4">
       <div className="container">
