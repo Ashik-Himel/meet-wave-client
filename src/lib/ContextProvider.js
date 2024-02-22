@@ -24,7 +24,7 @@ export default function ContextProvider({children}) {
       setUserLoaded(true);
     })
     return ()=> unSubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const value = {
     user,
