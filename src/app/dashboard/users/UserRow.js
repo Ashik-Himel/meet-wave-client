@@ -36,6 +36,9 @@ export default function UserRow({user}) {
         setPopupRole(user?.role);
         setPopupStatus(user?.status);
       })
+        
+       axiosSecure.post(`/users-disable?email=${user?.email}`,firebaseUser.uid)
+
       console.log(firebaseUser.uid)
   }
 
