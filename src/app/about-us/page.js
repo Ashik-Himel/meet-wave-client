@@ -1,3 +1,6 @@
+"use client"
+
+import Contact from "../ContactUs/Contact"
 
 export default function AboutUs(){
 
@@ -56,18 +59,25 @@ export default function AboutUs(){
     return(
          <div className='container'>
 
-          <h1 className='text-center font-bold  my-10 text-4xl'> <h1 className='text-center font-bold  my-10 text-4xl'>What do you know about this website? </h1> </h1>
+          <h1 className='text-center font-bold  my-10 text-2xl'> <h1 className='text-center font-bold  my-10 text-4xl'>What do you know about this website? </h1> </h1>
       
-             <div>
+             <div className=' '>
+                <p className='text-center '>We will build a MERN stack project, an online meeting platform. In this platform, the user will be able to create a meeting for his/her team or he/she will be able to join a meeting with their team. In this meeting, they will be able to do live video conferencing, audio conferencing, live chatting, and many more. With those various types of features during that meeting, the meeting will be an outstanding meeting like a face-to-face meeting.</p>
+
+                <p className='text-center my-4'>
+                    Create Meeting: The user can create a meeting from this page. (Private) <br/>
+
+                    Join Meeting: The user can join a meeting by meeting from this page. (Private) <br/>
+
+                    Meeting Page: The meeting page includes various types of functionalities. (Private and Secure)
+
+                </p>
+
                 
              </div>
 
 
-
-
-
-
-              <h1 className='text-center font-bold  my-10 text-4xl'>Do you know about our team ? </h1>
+              <h1 className='text-center font-bold  my-10 text-2xl'>Do you know about our team ? </h1>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                  {
@@ -87,6 +97,11 @@ export default function AboutUs(){
                     </div>)
                  }
               </div>
+
+              <h1 className='text-center font-bold  my-10 text-2xl'>Contact Us</h1>
+
+              <Contact/>
+               
          </div>
     )
 }
