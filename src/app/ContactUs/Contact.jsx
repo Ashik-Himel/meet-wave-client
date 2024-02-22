@@ -1,8 +1,14 @@
+'use client'
+
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+
 
 
 const Contact = () => {
 
-    const handleSend=e=>{
+  const axiosPublic=useAxiosPublic()
+
+    const handleSend=async e=>{
          e.preventDefault()
          const form =e.target;
          const firstName=form.first.value;
@@ -12,7 +18,13 @@ const Contact = () => {
          const text=form.text.value;
 
          const contactInfo={firstName,lastName,email,phone,text}
-         console.log(contactInfo)
+         
+
+         const response = await axiosPublic.post('/send-email', contactInfo);
+
+         console.log("Message sent:", response.data.message);
+        
+         
     }
 
 

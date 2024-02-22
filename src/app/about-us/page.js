@@ -1,4 +1,4 @@
-"use client"
+
 
 import Contact from "../ContactUs/Contact"
 
