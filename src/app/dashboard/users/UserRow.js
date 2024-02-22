@@ -39,11 +39,11 @@ export default function UserRow({user}) {
         const uid={
            firebaseUID:firebaseUser.uid
         }
-        
+
         if(popupStatus=='disabled'){
           axiosSecure.post(`/users-disable?email=${user?.email}`,uid)
           .then(res => {
-           
+           console.log(res)
          })
          .catch(err => {
            toast.error(err.code);
