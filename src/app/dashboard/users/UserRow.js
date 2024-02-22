@@ -17,12 +17,12 @@ export default function UserRow({user}) {
     setUserRole(popupRole);
     setUserStatus(popupStatus);
     setModalActive(false);
-
+    console.log(popupStatus)
     const document = {
       role: popupRole,
       status: popupStatus
     }
-      
+      console.log(popupStatus)
     axiosSecure.put(`/users?email=${user?.email}`, document)
       .then(res => {
         if (res.data?.modifiedCount === 1) {
@@ -36,10 +36,26 @@ export default function UserRow({user}) {
         setPopupRole(user?.role);
         setPopupStatus(user?.status);
       })
+        const uid={
+           firebaseUID:firebaseUser.uid
+        }
         
-       axiosSecure.post(`/users-disable?email=${user?.email}`,firebaseUser.uid)
+        if(popupStatus=='disabled'){
+          axiosSecure.post(`/users-disable?email=${user?.email}`,uid)
+          .then(res => {
+           
+         })
+         .catch(err => {
+           toast.error(err.code);
+           setUserRole(user?.role);
+           setUserStatus(user?.status);
+           setPopupRole(user?.role);
+           setPopupStatus(user?.status);
+         })
+        }
+       
 
-      console.log(firebaseUser.uid)
+      
   }
 
   return (
