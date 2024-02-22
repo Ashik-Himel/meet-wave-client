@@ -60,7 +60,13 @@ export default function UserRow({user}) {
           .then(res => {
            console.log(res)
          })
-         
+         .catch(err => {
+          toast.error(err.code);
+          setUserRole(user?.role);
+          setUserStatus(user?.status);
+          setPopupRole(user?.role);
+          setPopupStatus(user?.status);
+        })
         }
        
 
