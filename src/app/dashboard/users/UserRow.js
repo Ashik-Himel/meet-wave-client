@@ -2,6 +2,7 @@ import {LuSettings2} from 'react-icons/lu';
 import { useState } from 'react';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useAllContext from '@/hooks/useAllContext';
 
 export default function UserRow({user}) {
   const [modalActive, setModalActive] = useState(false);
@@ -10,6 +11,7 @@ export default function UserRow({user}) {
   const [popupRole, setPopupRole] = useState(user?.role);
   const [popupStatus, setPopupStatus] = useState(user?.status);
   const axiosSecure = useAxiosSecure();
+  const {user:firebaseUser} = useAllContext();
 
   const handleUserConfig = () => {
     setUserRole(popupRole);
@@ -20,6 +22,7 @@ export default function UserRow({user}) {
       role: popupRole,
       status: popupStatus
     }
+      
     axiosSecure.put(`/users?email=${user?.email}`, document)
       .then(res => {
         if (res.data?.modifiedCount === 1) {
@@ -33,6 +36,7 @@ export default function UserRow({user}) {
         setPopupRole(user?.role);
         setPopupStatus(user?.status);
       })
+      console.log(firebaseUser.uid)
   }
 
   return (
