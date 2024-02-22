@@ -12,7 +12,7 @@ export default function UserRow({user}) {
   const [popupStatus, setPopupStatus] = useState(user?.status);
   const axiosSecure = useAxiosSecure();
   const {user:firebaseUser} = useAllContext();
-
+   console.log(firebaseUser)
   const handleUserConfig = () => {
     setUserRole(popupRole);
     setUserStatus(popupStatus);
@@ -52,6 +52,15 @@ export default function UserRow({user}) {
            setPopupRole(user?.role);
            setPopupStatus(user?.status);
          })
+        }
+
+
+        if(popupStatus=='active'){
+          axiosSecure.post(`/users-enable?email=${user?.email}`,uid)
+          .then(res => {
+           console.log(res)
+         })
+         
         }
        
 
