@@ -14,7 +14,7 @@ export default function TrustCard() {
   }, [])
   return (
     <section className='bg-bgColor py-10 -translate-y-[20px]'>
-      <div className="container" data-aos="zoom-out" data-aos-duration="1500">
+      <div className="container" data-aos="fade-up" data-aos-duration="1500">
         <div className='flex flex-col sm:flex-row justify-between sm:items-center gap-6'>
           <span className='block w-full max-w-[300px] text-2xl font-semibold'>Trusted by 100+ companies in the world!</span>
           <div className='grid grid-cols-[auto_auto] lg:grid-cols-[auto_auto_auto_auto] gap-y-6 gap-x-6 md:gap-x-10 lg:gap-x-16'>
