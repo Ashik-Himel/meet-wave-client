@@ -17,7 +17,7 @@ export default function ContextProvider({children}) {
     const unSubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
       if(user?.email){
-        axiosPublic(`/user-role?email=${user?.email}`, {withCredentials: true})
+        axiosPublic.get(`/user-role?email=${user?.email}`, {withCredentials: true})
           .then(res => {
             setUserRole(res.data?.role);
           })
