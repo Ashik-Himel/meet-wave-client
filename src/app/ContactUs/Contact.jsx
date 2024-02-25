@@ -29,7 +29,7 @@ const Contact = () => {
 
 
     return (
-        <div className=''>
+        <div className='mb-10'>
    
          <div className="my-10">
         
