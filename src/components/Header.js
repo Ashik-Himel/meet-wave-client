@@ -80,7 +80,7 @@ export default function Header() {
               <Link href='/join-meeting'>Join Meeting</Link>
             </li>
             <li>
-              <Link href='/about-us'>About-Us</Link>
+              <Link href='/about-us'>About Us</Link>
             </li>
           </ul>
 
