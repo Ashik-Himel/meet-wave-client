@@ -2,7 +2,7 @@ import {LuSettings2} from 'react-icons/lu';
 import { useState } from 'react';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
-import useAllContext from '@/hooks/useAllContext';
+
 
 export default function UserRow({user}) {
   const [modalActive, setModalActive] = useState(false);
@@ -11,8 +11,8 @@ export default function UserRow({user}) {
   const [popupRole, setPopupRole] = useState(user?.role);
   const [popupStatus, setPopupStatus] = useState(user?.status);
   const axiosSecure = useAxiosSecure();
-  const {user:firebaseUser} = useAllContext();
-   console.log(firebaseUser)
+ 
+   console.log("new tech",user)
   const handleUserConfig = () => {
     setUserRole(popupRole);
     setUserStatus(popupStatus);
@@ -37,7 +37,7 @@ export default function UserRow({user}) {
         setPopupStatus(user?.status);
       })
         const uid={
-           firebaseUID:firebaseUser.uid
+           firebaseUID:user?.uid
         }
 
         if(popupStatus=='disabled'){

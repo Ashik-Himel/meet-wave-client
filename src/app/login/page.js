@@ -45,7 +45,8 @@ export default function Page() {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
+        
+        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL, uid:userCredential.user.uid }, {withCredentials: true})
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
@@ -55,7 +56,8 @@ export default function Page() {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
       .then((userCredential) => {
-        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL}, {withCredentials: true})
+       
+        axiosPublic.post('/users', {name: userCredential.user?.displayName, email: userCredential.user?.email, photo: userCredential?.user?.photoURL, uid:userCredential.user.uid }, {withCredentials: true})
           .then(() => toast.success("Login Successful!"))
           .catch(error => toast.error(error.message))
       })
