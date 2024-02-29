@@ -58,14 +58,7 @@ const Contact = () => {
                 </label>
                 <input name='last' type="text" placeholder="Last Name" className="input input-bordered border-blue-400 shadow-2xl text-black w-full" required />
               </div>
-
-
-
-
-
           </div>
-           
-
           <div className="flex w-full   gap-2">
              
           <div className="form-control w-[50%]">
@@ -85,8 +78,6 @@ const Contact = () => {
           </div>
 
          <textarea  placeholder="Write Your Text.................." className="border-2 border-blue-400 shadow-2xl text-black p-3 rounded-lg w-full mt-6" name="text" id="" cols="30" rows="3"></textarea>
-         
-
              <input className="btn w-full mt-5 bg-blue-400 shadow-2xl text-black" type="submit" value="Send" />
         </form>
         </div>
