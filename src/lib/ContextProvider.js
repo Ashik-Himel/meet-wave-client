@@ -11,12 +11,13 @@ export default function ContextProvider({children}) {
   const [userRole, setUserRole] = useState(null);
   const [userLoaded, setUserLoaded] = useState(false);
   const axiosPublic = useAxiosPublic();
+  // console.log(user);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
       if(user?.email){
-        axiosPublic(`/user-role?email=${user?.email}`, {withCredentials: true})
+        axiosPublic.get(`/user-role?email=${user?.email}`, {withCredentials: true})
           .then(res => {
             setUserRole(res.data?.role);
           })

@@ -13,6 +13,7 @@ const Page = () => {
     console.log(roomID);
     const meetingContainerRef = useRef(null);
 
+
     useEffect(() => {
         const initializeMeeting = async () => {
             try {
@@ -51,7 +52,7 @@ const Page = () => {
         initializeMeeting();
     }, [roomID, user]);
 
-
+    
     if (!userLoaded) return <LoadingPage />;
     if (!user) return router.push('/login');
 
@@ -63,3 +64,5 @@ const Page = () => {
 };
 
 export default Page;
+
+ 
