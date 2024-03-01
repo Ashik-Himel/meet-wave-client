@@ -32,7 +32,7 @@ const Contact = () => {
         <div className='my-28'>
    
          <div className="my-10 flex justify-center">
-         <form className="w-2/3 border p-6 border-blue-400 rounded-lg shadow-blue-400 shadow-lg "onSubmit={handleSend}>
+         <form className="w-2/3 border p-6 border-blue-400 shadow-blue-400 rounded-lg shadow-lg "onSubmit={handleSend}>
          <h1 className='text-center font-bold  my-4 text-2xl'>Contact Us</h1>
 
 <div className="flex w-full   gap-2">

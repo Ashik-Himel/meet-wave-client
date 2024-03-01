@@ -47,7 +47,7 @@ export default function AboutUs(){
           },
           {
                id:6,
-               image:'https://i.ibb.co/Njs4qFH/download.png',
+               image:'https://i.ibb.co/9qhvmT1/portfolio.jpg',
                name:'Tafiyatul Jannat',
                title:'Member',
                designation:'MERN Stack Developer',
@@ -57,47 +57,81 @@ export default function AboutUs(){
      ]
 
     return(
-         <div className='container'>
+         <div className='container mt-12'>
 
-          <h1 className='text-center font-bold  my-10 text-2xl'> <h1 className='text-center font-bold  my-10 text-4xl'>What do you know about this website? </h1> </h1>
+          <h1 className='text-center font-bold  my-10 text-2xl'> <h1 className='text-center font-bold  my-10 text-4xl sm:text-5xl'>About this <span className="text-primary">Website</span>  </h1> </h1>
+          <div className="flex justify-center">
+          <div className=' w-2/3  '>
+                <p className='text-center '>
+Experience the next level of team meetings with our MERN stack platform! Easily create or join meetings and enjoy features like live video, audio calls, and instant chat. Feel like you&apos;re meeting face-to-face, no matter where you are. Boost your team&apos;s collaboration with our user-friendly solution!</p>
+ </div>
+
+          </div>
+          <div className="max-w-screen-xl mx-auto p-8 mt-10 ">
+        <div className=" flex md:flex-row flex-col text-white relative">
+        <div className=" shadow-lg shadow-blue-400 md:w-96 glass h-[120px]  relative mt-7 rounded-lg "  data-aos="flip-right">
+  <div className="card-body p-6" >
+    
+    <h2 className="text-center text-xl font-bold">Create Meeting</h2>
+    <p className="text-center">
+    The user can create a meeting from this Website.</p>
+ 
+  </div>
+</div>
+<div className="shadow-lg shadow-blue-400 md:w-96 bg-primary h-[180px] rounded-lg  " data-aos="flip-up">
+
+  <div className="card-body p-6 ">
+    <h2 className=" text-center text-xl font-bold">Join Meeting</h2>
+    <p className="text-center">
+Joining a meeting via link is as simple as clicking on the provided URL, entering any necessary details, and instantly connecting to the virtual meeting. </p>
+   
+  </div>
+</div>
+<div className="shadow-lg shadow-blue-400 md:w-96 glass relative mt-7 h-[120px]  rounded-lg " data-aos="flip-left">
+
+  <div className="card-body p-6">
+    <h2 className="text-center text-xl font-bold">Meeting Page</h2>
+    <p className="text-center">
+    The meeting page includes various types of functionalities.</p>
+   
+  </div>
+</div>
       
-             <div className=' '>
-                <p className='text-center '>We will build a MERN stack project, an online meeting platform. In this platform, the user will be able to create a meeting for his/her team or he/she will be able to join a meeting with their team. In this meeting, they will be able to do live video conferencing, audio conferencing, live chatting, and many more. With those various types of features during that meeting, the meeting will be an outstanding meeting like a face-to-face meeting.</p>
 
-                <p className='text-center my-4'>
-                    Create Meeting: The user can create a meeting from this page. (Private) <br/>
+    
+    </div>
 
-                    Join Meeting: The user can join a meeting by meeting from this page. (Private) <br/>
+        </div>
+        <div className=" my-24">
+        <h1 className='text-center font-bold    mb-12 text-4xl'> Our <span className="text-primary">Expert</span>  Team </h1>
 
-                    Meeting Page: The meeting page includes various types of functionalities. (Private and Secure)
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+   {
+      teamInfo.map(item=><div key={item?.id}>
+           <div
+           data-aos={item?.animate}
+           data-aos-duration="1500"
+           className="shadow-lg p-2 pr-0 shadow-blue-400 rounded-lg gap-6 flex">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="w-40 h-40 rounded-lg" src={item?.image} />
 
-                </p>
+                <div>
+                     <h1 className="font-bold text-lg">{item?.name}</h1>
+                     <h1 className="font-semibold my-2">{item?.title}</h1>
+                     <h1 className="text-small">{item?.designation}</h1>
+                </div>
+           </div>
+      </div>)
+   }
+</div>
 
-                
-             </div>
+
+        </div>
+      
+           
 
 
-              <h1 className='text-center font-bold  my-10 text-2xl'>Do you know about our team ? </h1>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                 {
-                    teamInfo.map(item=><div key={item?.id}>
-                         <div
-                         data-aos={item?.animate}
-                         data-aos-duration="1500"
-                         className="shadow-lg p-2 pr-0 shadow-blue-400 rounded-lg gap-6 flex">
-                              <img className="w-40 h-40 rounded-lg" src={item?.image} />
-
-                              <div>
-                                   <h1 className="font-bold text-lg">{item?.name}</h1>
-                                   <h1 className="font-semibold my-2">{item?.title}</h1>
-                                   <h1 className="text-small">{item?.designation}</h1>
-                              </div>
-                         </div>
-                    </div>)
-                 }
-              </div>
-
+             
             
 
               <Contact/>
