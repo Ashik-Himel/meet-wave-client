@@ -67,30 +67,31 @@ Experience the next level of team meetings with our MERN stack platform! Easily 
  </div>
 
           </div>
-          <div className="max-w-screen-xl mx-auto p-8 ">
+          <div className="max-w-screen-xl mx-auto p-8 mt-10 ">
         <div className=" flex md:flex-row flex-col text-white relative">
-        <div className=" shadow-lg shadow-blue-400 md:w-96 glass h-[100px]  relative mt-7 rounded-lg "  data-aos="flip-right">
-  <div className="card-body px-8 py-1" >
+        <div className=" shadow-lg shadow-blue-400 md:w-96 glass h-[120px]  relative mt-7 rounded-lg "  data-aos="flip-right">
+  <div className="card-body p-6" >
     
     <h2 className="text-center text-xl font-bold">Create Meeting</h2>
-    <p>
-    The user can create a meeting from this page.</p>
+    <p className="text-center">
+    The user can create a meeting from this Website.</p>
  
   </div>
 </div>
-<div className="shadow-lg shadow-blue-400 md:w-96 bg-primary h-[150px] rounded-lg  " data-aos="flip-up">
+<div className="shadow-lg shadow-blue-400 md:w-96 bg-primary h-[180px] rounded-lg  " data-aos="flip-up">
 
-  <div className="card-body px-8 py-1">
+  <div className="card-body p-6 ">
     <h2 className=" text-center text-xl font-bold">Join Meeting</h2>
-    <p>The user can join a meeting by meeting from this page.</p>
+    <p className="text-center">
+Joining a meeting via link is as simple as clicking on the provided URL, entering any necessary details, and instantly connecting to the virtual meeting. </p>
    
   </div>
 </div>
-<div className="shadow-lg shadow-blue-400 md:w-96 glass relative mt-7 h-[100px]  rounded-lg " data-aos="flip-left">
+<div className="shadow-lg shadow-blue-400 md:w-96 glass relative mt-7 h-[120px]  rounded-lg " data-aos="flip-left">
 
-  <div className="card-body px-8 py-1">
+  <div className="card-body p-6">
     <h2 className="text-center text-xl font-bold">Meeting Page</h2>
-    <p>
+    <p className="text-center">
     The meeting page includes various types of functionalities.</p>
    
   </div>
