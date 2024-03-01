@@ -69,7 +69,7 @@ Experience the next level of team meetings with our MERN stack platform! Easily 
           </div>
           <div className="max-w-screen-xl mx-auto p-8 ">
         <div className=" flex md:flex-row flex-col text-white relative">
-        <div className=" md:w-96 glass h-[100px]  relative mt-7 rounded-lg "  data-aos="flip-right">
+        <div className=" shadow-lg shadow-blue-400 md:w-96 glass h-[100px]  relative mt-7 rounded-lg "  data-aos="flip-right">
   <div className="card-body px-8 py-1" >
     
     <h2 className="text-center text-xl font-bold">Create Meeting</h2>
@@ -78,7 +78,7 @@ Experience the next level of team meetings with our MERN stack platform! Easily 
  
   </div>
 </div>
-<div className="md:w-96 bg-primary h-[150px] rounded-lg  " data-aos="flip-up">
+<div className="shadow-lg shadow-blue-400 md:w-96 bg-primary h-[150px] rounded-lg  " data-aos="flip-up">
 
   <div className="card-body px-8 py-1">
     <h2 className=" text-center text-xl font-bold">Join Meeting</h2>
@@ -86,7 +86,7 @@ Experience the next level of team meetings with our MERN stack platform! Easily 
    
   </div>
 </div>
-<div className=" md:w-96 glass relative mt-7 h-[100px]  rounded-lg " data-aos="flip-left">
+<div className="shadow-lg shadow-blue-400 md:w-96 glass relative mt-7 h-[100px]  rounded-lg " data-aos="flip-left">
 
   <div className="card-body px-8 py-1">
     <h2 className="text-center text-xl font-bold">Meeting Page</h2>
@@ -102,7 +102,7 @@ Experience the next level of team meetings with our MERN stack platform! Easily 
 
         </div>
         <div className=" my-24">
-        <h1 className='text-center font-bold   mb-12 text-4xl'> Our <span className="text-primary">Expert</span>  Team </h1>
+        <h1 className='text-center font-bold    mb-12 text-4xl'> Our <span className="text-primary">Expert</span>  Team </h1>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
    {
