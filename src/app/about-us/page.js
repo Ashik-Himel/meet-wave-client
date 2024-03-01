@@ -47,7 +47,7 @@ export default function AboutUs(){
           },
           {
                id:6,
-               image:'https://i.ibb.co/Njs4qFH/download.png',
+               image:'https://i.ibb.co/9qhvmT1/portfolio.jpg',
                name:'Tafiyatul Jannat',
                title:'Member',
                designation:'MERN Stack Developer',
