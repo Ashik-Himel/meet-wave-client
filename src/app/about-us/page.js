@@ -98,7 +98,7 @@ export default function AboutUs(){
                  }
               </div>
 
-              <h1 className='text-center font-bold  my-10 text-2xl'>Contact Us</h1>
+            
 
               <Contact/>
                
