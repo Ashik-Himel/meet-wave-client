@@ -57,52 +57,79 @@ export default function AboutUs(){
      ]
 
     return(
-         <div className='container'>
+         <div className='container mt-12'>
 
-          <h1 className='text-center font-bold  my-10 text-2xl'> <h1 className='text-center font-bold  my-10 text-4xl'>What do you know about this website? </h1> </h1>
+          <h1 className='text-center font-bold  my-10 text-2xl'> <h1 className='text-center font-bold  my-10 text-4xl sm:text-5xl'>About this <span className="text-primary">Website</span>  </h1> </h1>
           <div className="flex justify-center">
           <div className=' w-2/3  '>
                 <p className='text-center '>
 Experience the next level of team meetings with our MERN stack platform! Easily create or join meetings and enjoy features like live video, audio calls, and instant chat. Feel like you're meeting face-to-face, no matter where you are. Boost your team's collaboration with our user-friendly solution!</p>
-
-                <p className='text-center my-4'>
-                    Create Meeting: The user can create a meeting from this page. (Private) <br/>
-
-                    Join Meeting: The user can join a meeting by meeting from this page. (Private) <br/>
-
-                    Meeting Page: The meeting page includes various types of functionalities. (Private and Secure)
-
-                </p>
-
-                
-             </div>
+ </div>
 
           </div>
+          <div className="max-w-screen-xl mx-auto p-8 ">
+        <div className=" flex md:flex-row flex-col text-white relative">
+        <div className=" md:w-96 glass h-[100px]  relative mt-7 rounded-lg "  data-aos="flip-right">
+  <div className="card-body px-8 py-1" >
+    
+    <h2 className="text-center text-xl font-bold">Create Meeting</h2>
+    <p>
+    The user can create a meeting from this page.</p>
+ 
+  </div>
+</div>
+<div className="md:w-96 bg-primary h-[150px] rounded-lg  " data-aos="flip-up">
+
+  <div className="card-body px-8 py-1">
+    <h2 className=" text-center text-xl font-bold">Join Meeting</h2>
+    <p>The user can join a meeting by meeting from this page.</p>
+   
+  </div>
+</div>
+<div className=" md:w-96 glass relative mt-7 h-[100px]  rounded-lg " data-aos="flip-left">
+
+  <div className="card-body px-8 py-1">
+    <h2 className="text-center text-xl font-bold">Meeting Page</h2>
+    <p>
+    The meeting page includes various types of functionalities.</p>
+   
+  </div>
+</div>
+      
+
+    
+    </div>
+
+        </div>
+        <div className=" my-24">
+        <h1 className='text-center font-bold   mb-12 text-4xl'> Our <span className="text-primary">Expert</span>  Team </h1>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+   {
+      teamInfo.map(item=><div key={item?.id}>
+           <div
+           data-aos={item?.animate}
+           data-aos-duration="1500"
+           className="shadow-lg p-2 pr-0 shadow-blue-400 rounded-lg gap-6 flex">
+                <img className="w-40 h-40 rounded-lg" src={item?.image} />
+
+                <div>
+                     <h1 className="font-bold text-lg">{item?.name}</h1>
+                     <h1 className="font-semibold my-2">{item?.title}</h1>
+                     <h1 className="text-small">{item?.designation}</h1>
+                </div>
+           </div>
+      </div>)
+   }
+</div>
+
+
+        </div>
       
            
 
 
-              <h1 className='text-center font-bold  my-10 text-2xl'>Do you know about our team ? </h1>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                 {
-                    teamInfo.map(item=><div key={item?.id}>
-                         <div
-                         data-aos={item?.animate}
-                         data-aos-duration="1500"
-                         className="shadow-lg p-2 pr-0 shadow-blue-400 rounded-lg gap-6 flex">
-                              <img className="w-40 h-40 rounded-lg" src={item?.image} />
-
-                              <div>
-                                   <h1 className="font-bold text-lg">{item?.name}</h1>
-                                   <h1 className="font-semibold my-2">{item?.title}</h1>
-                                   <h1 className="text-small">{item?.designation}</h1>
-                              </div>
-                         </div>
-                    </div>)
-                 }
-              </div>
-
+             
             
 
               <Contact/>
